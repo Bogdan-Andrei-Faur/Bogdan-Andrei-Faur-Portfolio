@@ -1,0 +1,28 @@
+/* Fondo global unificado para todo el layout */
+.main-layout {
+  position: relative;
+  min-height: 100vh;
+  /* Fondo degradado animado único para toda la página */
+  background: radial-gradient(
+    ellipse at 30% 70%,
+    #ffe680,
+    #ffd4e5 25%,
+    #c5d5ea 50%,
+    #b8ecf3 75%,
+    #e8f4f8
+  );
+  background-size: 200% 200%;
+  animation: bgShift 12s ease-in-out infinite;
+}
+
+@keyframes bgShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

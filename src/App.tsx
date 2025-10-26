@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Home from "./pages/Home/Home.tsx";
+import MainLayout from "./layouts/MainLayout.tsx";
 
 import Dock from "./components/Dock.tsx";
 
@@ -16,7 +16,7 @@ const App = () => {
         </div>
         <Dock />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<MainLayout />} />
         </Routes>
       </Router>
     </div>

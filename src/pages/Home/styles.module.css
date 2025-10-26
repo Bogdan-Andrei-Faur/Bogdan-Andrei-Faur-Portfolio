@@ -20,20 +20,12 @@
 
   position: relative;
   color: var(--accent);
-  /* Fondo degradado animado, visible gracias al Canvas con alpha */
-  background: radial-gradient(
-    ellipse at 30% 70%,
-    #ffe680,
-    #ffd4e5 25%,
-    #c5d5ea 50%,
-    #b8ecf3 75%,
-    #e8f4f8
-  );
-  background-size: 200% 200%;
-  animation: bgShift 12s ease-in-out infinite;
+  /* Sin fondo aquí, el fondo está en MainLayout */
+  background: transparent;
 
-  /* Provide scroll length for framer-motion's scrollYProgress without touching #root/body */
-  min-height: 500vh;
+  /* Altura reducida para menos scroll */
+  min-height: 110vh;
+  height: 110vh;
 }
 
 .canvasContainer {
@@ -43,6 +35,8 @@
   bottom: 0;
   left: 0;
   z-index: 0;
+  /* Solo visible en el viewport de Home */
+  transition: opacity 0.6s ease-out;
 }
 
 /* Only affect the canvas within this page */
@@ -54,17 +48,31 @@
 }
 
 .content {
-  position: fixed;
-  bottom: 0; /* Vuelto a la posición original */
+  position: absolute;
+  bottom: 2%;
   left: 0;
   right: 0;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
-  padding: 2rem 1rem 5.5rem 1rem;
+  justify-content: center;
+  padding: 2rem 1rem;
   z-index: 10;
   pointer-events: none;
+}
+
+/* Ajustes de posición en móviles: sube un poco el bloque de texto */
+@media (max-width: 768px) {
+  .content {
+    bottom: 2%;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    bottom: 6%;
+  }
 }
 
 .content > * {
@@ -72,7 +80,6 @@
 }
 
 .scrollIndicator {
-  margin-top: 1rem; /* Reducido de 2rem a 1rem */
   background: transparent;
   border: none;
   cursor: pointer;
@@ -87,14 +94,4 @@
   transform: scale(1.1);
 }
 
-@keyframes bgShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+/* Eliminamos la animación bgShift de aquí ya que está en MainLayout */

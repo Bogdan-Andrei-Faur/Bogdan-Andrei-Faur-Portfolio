@@ -1,0 +1,137 @@
+/* Scoped styles for the About page */
+
+.about {
+  min-height: 100vh;
+  position: relative;
+  /* Sin fondo aquí, el fondo está en MainLayout */
+  background: transparent;
+  padding: 6rem 1rem 8rem 1rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Hero Section */
+.hero {
+  margin-bottom: 4rem;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .heroContent {
+    flex-direction: row;
+    text-align: left;
+    gap: 3rem;
+  }
+}
+
+.avatar {
+  flex-shrink: 0;
+}
+
+.avatarPlaceholder {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.avatarImage {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.heroText {
+  flex: 1;
+  max-width: 600px;
+}
+
+/* Section */
+.section {
+  margin-bottom: 4rem;
+}
+
+/* Skills Grid */
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.skillCard {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.skillCard:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.skillIcon {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* Values Grid */
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.valueCard {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.valueCard:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.valueIcon {
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 1rem;
+}
+
+/* Animación movida a mainLayout.css */
