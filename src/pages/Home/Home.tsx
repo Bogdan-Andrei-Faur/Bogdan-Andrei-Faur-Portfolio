@@ -1,0 +1,182 @@
+import styles from "./styles.module.css";
+import { Canvas, useThree, useFrame } from "@react-three/fiber";
+import { useRef, useLayoutEffect, useCallback } from "react";
+import { motion as m, useTransform, useScroll, useTime } from "framer-motion";
+import { degreesToRadians, progress, mix } from "popmotion";
+import { IconChevronDown } from "@tabler/icons-react";
+
+const color = "#111111";
+
+type SphericalPositionable = {
+  position: {
+    setFromSphericalCoords: (
+      radius: number,
+      phi: number,
+      theta: number
+    ) => void;
+  };
+};
+
+const Icosahedron = () => (
+  <mesh rotation-x={0.35}>
+    <icosahedronGeometry args={[1, 0]} />
+    <meshBasicMaterial wireframe color={color} />
+  </mesh>
+);
+
+const Star = ({ p }: { p: number }) => {
+  const ref = useRef<SphericalPositionable | null>(null);
+
+  useLayoutEffect(() => {
+    const distance = mix(2, 3.5, Math.random());
+    const yAngle = mix(
+      degreesToRadians(80),
+      degreesToRadians(100),
+      Math.random()
+    );
+    const xAngle = degreesToRadians(360) * p;
+    ref.current!.position.setFromSphericalCoords(distance, yAngle, xAngle);
+  });
+
+  return (
+    <mesh ref={ref}>
+      <boxGeometry args={[0.05, 0.05, 0.05]} />
+      <meshBasicMaterial wireframe color={color} />
+    </mesh>
+  );
+};
+
+function Scene({
+  numStars = 140,
+  mouseRef,
+}: {
+  numStars?: number;
+  mouseRef: React.MutableRefObject<{ x: number; y: number }>;
+}) {
+  const gl = useThree((state) => state.gl);
+  type Rotatable = { rotation: { x: number; y: number } };
+  const group = useRef<Rotatable | null>(null);
+  const { scrollYProgress } = useScroll();
+  const yAngle = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0.001, degreesToRadians(180)]
+  );
+  const distance = useTransform(scrollYProgress, [0, 1], [10, 3]);
+  const time = useTime();
+
+  useFrame(({ camera }) => {
+    camera.position.setFromSphericalCoords(
+      distance.get(),
+      yAngle.get(),
+      time.get() * 0.0005
+    );
+    camera.updateProjectionMatrix();
+    camera.lookAt(0, 1.8, 0); // Aumentado de 1.2 a 1.8 para subir más la animación
+
+    // Parallax suave según el mouse
+    if (group.current) {
+      const targetX = mouseRef.current.x * 0.25;
+      const targetY = mouseRef.current.y * 0.15;
+      group.current.rotation.y = mix(group.current.rotation.y, targetX, 0.05);
+      group.current.rotation.x = mix(group.current.rotation.x, targetY, 0.05);
+    }
+  });
+
+  useLayoutEffect(() => gl.setPixelRatio(0.3));
+
+  const stars = [];
+  for (let i = 0; i < numStars; i++) {
+    stars.push(<Star key={i} p={progress(0, numStars, i)} />);
+  }
+
+  return (
+    <group ref={group}>
+      <Icosahedron />
+      {stars}
+    </group>
+  );
+}
+
+export default function App() {
+  const mouseRef = useRef({ x: 0, y: 0 });
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const mx = (e.clientX - rect.left) / rect.width; // 0..1
+    const my = (e.clientY - rect.top) / rect.height; // 0..1
+    mouseRef.current.x = (mx - 0.5) * 2; // -1..1
+    mouseRef.current.y = (0.5 - my) * 2; // -1..1 (invertido)
+  }, []);
+
+  const scrollNext = useCallback(() => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+    }
+  }, []);
+
+  return (
+    <div className={styles.home}>
+      <div className={styles.canvasContainer} onMouseMove={handleMouseMove}>
+        <Canvas gl={{ antialias: false, alpha: true }}>
+          <Scene mouseRef={mouseRef} />
+        </Canvas>
+      </div>
+
+      {/* Contenido del hero - Abajo */}
+      <div className={styles.content}>
+        <m.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-4xl md:text-6xl font-extrabold tracking-tight text-center"
+        >
+          Bogdan Andrei Faur
+        </m.h1>
+        <m.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
+          className="mt-4 text-center text-sm md:text-base lg:text-lg text-black/80 max-w-3xl px-4"
+        >
+          Responsable de IT & Full Stack Developer
+        </m.p>
+        <m.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.25 }}
+          className="mt-2 text-center text-sm md:text-base text-black/70 max-w-2xl px-4"
+        >
+          Gestión y desarrollo de soluciones digitales
+        </m.p>
+
+        {/* Flecha animada para scroll */}
+        <m.button
+          onClick={scrollNext}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.8,
+            ease: "easeOut",
+            delay: 0.4,
+          }}
+          className={styles.scrollIndicator}
+          aria-label="Scroll para ver más"
+        >
+          <m.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <IconChevronDown size={32} stroke={2} />
+          </m.div>
+        </m.button>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,100 @@
+/* Scoped styles for the Home page only */
+
+.home {
+  /* Local CSS variables (no global leakage) */
+  --black: #000000;
+  --ash-black: #222;
+  --white: #fafafa;
+  --sky: #00ccff;
+  --green: #22dddd;
+  --blue: #1300ff;
+  --dusk: #6600ff;
+  --purple: #9900ff;
+  --pink: #ff0066;
+  --red: #fe0222;
+  --orange: #fd7702;
+  --yellow: #ffbb00;
+
+  --background: var(--yellow);
+  --accent: var(--black);
+
+  position: relative;
+  color: var(--accent);
+  /* Fondo degradado animado, visible gracias al Canvas con alpha */
+  background: radial-gradient(
+    ellipse at 30% 70%,
+    #ffe680,
+    #ffd4e5 25%,
+    #c5d5ea 50%,
+    #b8ecf3 75%,
+    #e8f4f8
+  );
+  background-size: 200% 200%;
+  animation: bgShift 12s ease-in-out infinite;
+
+  /* Provide scroll length for framer-motion's scrollYProgress without touching #root/body */
+  min-height: 500vh;
+}
+
+.canvasContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
+
+/* Only affect the canvas within this page */
+.home canvas {
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: pixelated;
+  image-rendering: optimize-contrast;
+}
+
+.content {
+  position: fixed;
+  bottom: 0; /* Vuelto a la posición original */
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 2rem 1rem 5.5rem 1rem;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.content > * {
+  pointer-events: auto; /* Los elementos internos sí reciben eventos */
+}
+
+.scrollIndicator {
+  margin-top: 1rem; /* Reducido de 2rem a 1rem */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 50%;
+}
+
+.scrollIndicator:hover {
+  color: rgba(0, 0, 0, 0.9);
+  transform: scale(1.1);
+}
+
+@keyframes bgShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

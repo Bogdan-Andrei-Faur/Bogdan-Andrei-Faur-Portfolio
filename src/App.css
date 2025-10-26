@@ -1,6 +1,37 @@
+@import "tailwindcss";
+
+html,
+body,
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Clase para centrar contenido horizontal y verticalmente */
+.centered {
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 100%; /* Asegura que el contenedor ocupe toda la altura */
+}
+
+/* Clase para centrar contenido horizontalmente */
+.centered-horizontal {
+  display: flex;
+  justify-content: center;
+}
+
+/* Clase para centrar contenido verticalmente */
+.centered-vertical {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* Clase para centrar texto */
+.text-center {
   text-align: center;
 }
