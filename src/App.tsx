@@ -10,6 +10,10 @@ const App = () => {
   return (
     <div className="flex flex-col">
       <Router>
+        <div className="z-50 fixed top-0 left-0 right-0 text-black flex justify-center items-center p-2 text-sm bg-yellow-300/80 backdrop-blur-md border-b border-yellow-400 shadow-md">
+          This site is under development. Some features may be missing or
+          incomplete.
+        </div>
         <Dock />
         <Routes>
           <Route path="/" element={<Home />} />
