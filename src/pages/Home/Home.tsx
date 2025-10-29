@@ -98,7 +98,10 @@ function Scene({
     }
   });
 
-  useLayoutEffect(() => gl.setPixelRatio(0.3));
+  // Elimina el pixel ratio bajo para que el canvas se vea nítido
+  useLayoutEffect(() => {
+    gl.setPixelRatio(window.devicePixelRatio);
+  });
 
   const stars = [];
   for (let i = 0; i < numStars; i++) {

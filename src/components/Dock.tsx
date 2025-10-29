@@ -88,7 +88,7 @@ const Dock = () => {
     }
   }, []);
   return (
-    <div className="z-40 scale-90 md:scale-100 fixed bottom-0 left-1/2 -translate-x-1/2 mb-2 flex w-fit rounded-full p-2.5 gap-2 backdrop-blur-xl bg-white/40 border border-white/60 shadow-lg transition-all duration-500">
+    <div className="z-40 scale-80 md:scale-100 fixed bottom-0 left-1/2 -translate-x-1/2 mb-2 flex w-fit rounded-full p-2.5 gap-2 backdrop-blur-xl bg-white/40 border border-white/60 shadow-lg transition-all duration-500">
       {buttons.map((button) => (
         <button
           key={button.id}
