@@ -1,5 +1,6 @@
 import Home from "../pages/Home/Home";
 import About from "../pages/About/About";
+import Experience from "../pages/Experience/Experience";
 import "./mainLayout.css";
 
 const MainLayout = () => {
@@ -13,6 +14,11 @@ const MainLayout = () => {
       {/* About Section - Segunda pantalla */}
       <section id="about" className="relative">
         <About />
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="relative">
+        <Experience />
       </section>
     </div>
   );

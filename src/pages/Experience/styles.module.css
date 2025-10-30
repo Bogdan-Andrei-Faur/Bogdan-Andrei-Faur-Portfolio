@@ -1,0 +1,7 @@
+/* Mínimo CSS para soporte masonry con columnas y evitar cortes dentro de columnas */
+.avoidBreak {
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+  page-break-inside: avoid;
+}

@@ -1,4 +1,4 @@
-import styles from "./styles.module.css";
+// Tailwind-first: CSS mínimo, sin módulo de estilos
 import { Canvas, useThree, useFrame } from "@react-three/fiber";
 import { useRef, useLayoutEffect, useCallback } from "react";
 import { motion as m, useTime, useScroll, useTransform } from "framer-motion";
@@ -152,10 +152,14 @@ export default function App() {
   }, []);
 
   return (
-    <div ref={sectionRef} className={styles.home} onMouseMove={handleMouseMove}>
+    <div
+      ref={sectionRef}
+      className="relative bg-transparent min-h-[110vh] h-[110vh]"
+      onMouseMove={handleMouseMove}
+    >
       {/* Canvas 3D */}
       <m.div
-        className={styles.canvasContainer}
+        className="fixed inset-0 z-0 transition-opacity duration-700 ease-out"
         style={{ opacity: canvasOpacity }}
       >
         <Canvas gl={{ antialias: false }}>
@@ -164,12 +168,15 @@ export default function App() {
       </m.div>
 
       {/* Contenido superpuesto */}
-      <m.div className={styles.content} style={{ opacity: contentOpacity }}>
+      <m.div
+        className="absolute bottom-[2%] left-0 right-0 -translate-y-1/2 flex flex-col items-center justify-center p-8 z-10"
+        style={{ opacity: contentOpacity }}
+      >
         <m.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-4xl md:text-6xl font-extrabold tracking-tight text-center"
+          className="text-4xl md:text-6xl font-extrabold tracking-tight text-center text-black/90"
         >
           Bogdan Andrei Faur
         </m.h1>
@@ -203,7 +210,7 @@ export default function App() {
             ease: "easeOut",
             delay: 0.4,
           }}
-          className={styles.scrollIndicator}
+          className="bg-transparent border-0 cursor-pointer text-black/60 transition-all p-2 rounded-full hover:text-black/90 hover:scale-110"
           aria-label="Scroll para ver más"
         >
           <m.div

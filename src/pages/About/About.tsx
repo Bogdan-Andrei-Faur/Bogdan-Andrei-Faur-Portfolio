@@ -1,4 +1,4 @@
-import styles from "./styles.module.css";
+// Tailwind-first: CSS mínimo en esta página
 import { motion as m } from "framer-motion";
 import profile from "../../assets/profile.webp";
 import {
@@ -13,20 +13,29 @@ import {
   IconBrandLinkedin,
   IconMail,
   IconGitBranch,
-  IconShieldCheck,
   IconCloud,
   IconWorld,
-  IconChartBar,
   IconDownload,
+  IconLanguage,
+  IconBrandRedux,
+  IconChartBar,
+  IconBrandOpenai,
 } from "@tabler/icons-react";
 
 const About = () => {
   const skills = [
     { name: "React", icon: <IconBrandReact size={32} stroke={1.5} /> },
     { name: "Node.js", icon: <IconBrandNodejs size={32} stroke={1.5} /> },
+    { name: "Express", icon: <IconCode size={32} stroke={1.5} /> },
     { name: "PostgreSQL", icon: <IconDatabase size={32} stroke={1.5} /> },
+    { name: "Prisma", icon: <IconDatabase size={32} stroke={1.5} /> },
     { name: "Astro", icon: <IconBrandAstro size={32} stroke={1.5} /> },
-    { name: "CI/CD", icon: <IconCode size={32} stroke={1.5} /> },
+    { name: "Redux", icon: <IconBrandRedux size={32} stroke={1.5} /> },
+    { name: "i18n", icon: <IconLanguage size={32} stroke={1.5} /> },
+    { name: "Chart.js", icon: <IconChartBar size={32} stroke={1.5} /> },
+    { name: "Cloudinary", icon: <IconCloud size={32} stroke={1.5} /> },
+    { name: "OpenAI API", icon: <IconBrandOpenai size={32} stroke={1.5} /> },
+    { name: "CI/CD", icon: <IconGitBranch size={32} stroke={1.5} /> },
   ];
 
   const values = [
@@ -51,18 +60,18 @@ const About = () => {
   ];
 
   return (
-    <div className={styles.about}>
-      <div className={styles.container}>
+    <div className="min-h-screen relative bg-transparent py-24 px-4">
+      <div className="max-w-[1200px] mx-auto">
         {/* Hero Section */}
         <m.section
-          className={styles.hero}
+          className="mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className={styles.heroContent}>
+          <div className="flex flex-col items-center gap-8 text-center md:flex-row md:text-left md:gap-12">
             <m.div
-              className={styles.avatar}
+              className="shrink-0"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
@@ -70,21 +79,30 @@ const About = () => {
               <img
                 src={profile}
                 alt="Bogdan Andrei Faur"
-                className={styles.avatarImage}
+                className="w-[200px] h-[200px] rounded-full object-cover border-2 border-white/85 shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
                 loading="eager"
                 decoding="async"
               />
             </m.div>
-            <div className={styles.heroText}>
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">Sobre mí</h1>
-              <p className="text-lg md:text-xl text-black/80 leading-relaxed">
+            <div className="flex-1 max-w-[600px]">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-start">
+                Sobre mí
+              </h1>
+              <p className="text-lg md:text-xl text-black/80 text-start">
                 Soy <strong>Bogdan Andrei Faur</strong>, Responsable de IT y
-                Full Stack Developer. +2 años programando activamente y +1 año
-                liderando el área técnica en la sede española de una consultora.
-                Diseñé y desplegué soluciones web end‑to‑end combinando{" "}
-                <em>React, Node.js, PostgreSQL, Astro</em> y flujos{" "}
-                <em>CI/CD</em>, con foco en rendimiento, cumplimiento normativo
-                y experiencia de usuario.
+                Full Stack Developer. Llevo más de{" "}
+                <strong>2 años programando</strong> y más de{" "}
+                <strong>1 año liderando</strong> proyectos y equipos técnicos.
+                Actualmente dirijo el área de IT en una consultora
+                internacional, donde he diseñado y desarrollado desde cero
+                nuestras principales soluciones digitales.
+              </p>
+              <p className="mt-3 text-black/75 text-start">
+                Mi enfoque combina <em>desarrollo práctico</em> (React, Node.js,
+                Express, PostgreSQL, Prisma, Astro, CI/CD) con{" "}
+                <em>gestión técnica</em> de proyectos, soporte IT interno y{" "}
+                <em>cumplimiento normativo</em>. Me apasiona aprender, enseñar y
+                resolver problemas.
               </p>
               <div className="mt-4 flex items-center gap-3 flex-wrap">
                 <a
@@ -112,6 +130,7 @@ const About = () => {
                   <IconBrandGithub size={18} />{" "}
                   <span className="text-sm">GitHub</span>
                 </a>
+                {/* Enlace a Web eliminado por redundante si ya estamos en la misma web */}
                 <a
                   href="https://drive.google.com/uc?export=download&id=19Si4TiAYfGwLMF_FD26eMiwcffaedvXK"
                   target="_blank"
@@ -126,9 +145,11 @@ const About = () => {
           </div>
         </m.section>
 
+        {/* Aptitudes principales eliminado a petición del usuario */}
+
         {/* Tech Stack Section */}
         <m.section
-          className={styles.section}
+          className="mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -137,11 +158,11 @@ const About = () => {
           <h2 className="text-3xl font-bold mb-6 text-center">
             Stack Tecnológico
           </h2>
-          <div className={styles.skillsGrid}>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-6 max-w-[800px] mx-auto">
             {skills.map((skill, index) => (
               <m.div
                 key={skill.name}
-                className={styles.skillCard}
+                className="bg-white/70 backdrop-blur-md border border-white/90 rounded-xl p-6 flex flex-col items-center justify-center text-center text-black/85 shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] hover:bg-white/80 cursor-pointer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{
@@ -151,7 +172,7 @@ const About = () => {
                 }}
                 viewport={{ once: true }}
               >
-                <div className={styles.skillIcon}>{skill.icon}</div>
+                <div className="text-black/70">{skill.icon}</div>
                 <p className="text-base font-medium mt-2 text-black/80">
                   {skill.name}
                 </p>
@@ -160,128 +181,15 @@ const About = () => {
           </div>
         </m.section>
 
-        {/* Experience Section */}
-        <m.section
-          className={styles.section}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          <h2 className="text-3xl font-bold mb-6 text-center">Experiencia</h2>
-          <div className={styles.valuesGrid}>
-            <div className={styles.valueCard}>
-              <div className="flex items-center gap-3 mb-2 text-black">
-                <IconShieldCheck />
-                <h3 className="text-xl font-semibold">
-                  Responsable de IT & Desarrollo — PetroShore Compliance
-                </h3>
-              </div>
-              <p className="text-sm text-black/60 mb-3">
-                Mar 2024 — Actualidad · Huesca, España
-              </p>
-              <ul className="list-disc pl-5 text-black/80 space-y-1">
-                <li>Liderazgo técnico de un equipo de 2 desarrolladores.</li>
-                <li>
-                  Diseño de arquitecturas, APIs y BBDD con Node.js, Express y
-                  PostgreSQL.
-                </li>
-                <li>
-                  Frontend con React/Astro, i18n, gráficos y accesibilidad.
-                </li>
-                <li>Integraciones: OpenAI API, Cloudinary, Nodemailer.</li>
-                <li>CI/CD y despliegues; cumplimiento legal y QA.</li>
-                <li>Soporte IT e infraestructura interna.</li>
-              </ul>
-              <div className="mt-3 flex flex-wrap gap-2">
-                <span className="px-3 py-1 rounded-full text-xs bg-white/80 text-black inline-flex items-center gap-1">
-                  <IconBrandReact size={14} />
-                  React
-                </span>
-                <span className="px-3 py-1 rounded-full text-xs bg-white/80 text-black inline-flex items-center gap-1">
-                  <IconBrandNodejs size={14} />
-                  Node.js
-                </span>
-                <span className="px-3 py-1 rounded-full text-xs bg-white/80 text-black inline-flex items-center gap-1">
-                  <IconDatabase size={14} />
-                  PostgreSQL
-                </span>
-                <span className="px-3 py-1 rounded-full text-xs bg-white/80 text-black inline-flex items-center gap-1">
-                  <IconBrandAstro size={14} />
-                  Astro
-                </span>
-                <span className="px-3 py-1 rounded-full text-xs bg-white/80 text-black inline-flex items-center gap-1">
-                  <IconGitBranch size={14} />
-                  CI/CD
-                </span>
-              </div>
-            </div>
-            <div className={styles.valueCard}>
-              <div className="flex items-center gap-3 mb-2 text-black">
-                <IconCode />
-                <h3 className="text-xl font-semibold">
-                  Front-end Developer — Caravana Social
-                </h3>
-              </div>
-              <p className="text-sm text-black/60 mb-3">Ago 2023 — Sep 2023</p>
-              <p className="text-black/80">
-                Participación en bolsa de empleo accesible: React, Redux,
-                Node/Express y PostgreSQL.
-              </p>
-            </div>
-          </div>
-        </m.section>
+        {/* Experiencia: se ha movido a sección propia */}
 
-        {/* Featured Projects */}
-        <m.section
-          className={styles.section}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          <h2 className="text-3xl font-bold mb-6 text-center">
-            Proyectos destacados
-          </h2>
-          <div className={styles.valuesGrid}>
-            <div className={styles.valueCard}>
-              <div className="flex items-center gap-3 mb-2 text-black">
-                <IconRocket />
-                <h3 className="text-xl font-semibold">
-                  Migración corporativa a Astro
-                </h3>
-              </div>
-              <p className="text-black/80">
-                Sustitución de WordPress por Astro con mejora notable de SEO y
-                rendimiento.
-              </p>
-            </div>
-            <div className={styles.valueCard}>
-              <div className="flex items-center gap-3 mb-2 text-black">
-                <IconCloud />
-                <h3 className="text-xl font-semibold">PWA para eventos</h3>
-              </div>
-              <p className="text-black/80">
-                Agenda interactiva, streaming y certificados. Construida como
-                PWA.
-              </p>
-            </div>
-            <div className={styles.valueCard}>
-              <div className="flex items-center gap-3 mb-2 text-black">
-                <IconChartBar />
-                <h3 className="text-xl font-semibold">MindScan</h3>
-              </div>
-              <p className="text-black/80">
-                Plataforma de análisis psicológico, comparación y exportación de
-                resultados.
-              </p>
-            </div>
-          </div>
-        </m.section>
+        {/* Proyectos: tendrá su propia sección más adelante */}
+
+        {/* Intereses profesionales eliminado a petición del usuario */}
 
         {/* Languages */}
         <m.section
-          className={styles.section}
+          className="mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -302,18 +210,18 @@ const About = () => {
         </m.section>
         {/* Values Section */}
         <m.section
-          className={styles.section}
+          className="mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true, margin: "-100px" }}
         >
           <h2 className="text-3xl font-bold mb-6 text-center">Mi Enfoque</h2>
-          <div className={styles.valuesGrid}>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-8">
             {values.map((value, index) => (
               <m.div
                 key={value.title}
-                className={styles.valueCard}
+                className="bg-white/70 backdrop-blur-md border border-white/90 rounded-2xl p-8 text-black/85 shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)] hover:bg-white/75"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{
@@ -324,7 +232,7 @@ const About = () => {
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
               >
-                <div className={styles.valueIcon}>{value.icon}</div>
+                <div className="text-black/70 mb-4">{value.icon}</div>
                 <h3 className="text-xl font-semibold mb-3 text-black">
                   {value.title}
                 </h3>
