@@ -4,7 +4,8 @@ import profile from "../../assets/profile.webp";
 import {
   IconCode,
   IconDatabase,
-  IconBrandReact,
+  IconFileTypeJsx,
+  IconFileTypeTsx,
   IconBrandNodejs,
   IconBrandAstro,
   IconUsers,
@@ -20,22 +21,47 @@ import {
   IconBrandRedux,
   IconChartBar,
   IconBrandOpenai,
+  IconFileTypeJs,
+  IconFileTypeTs,
+  IconFileTypeHtml,
+  IconFileTypeCss,
+  IconBrandTailwind,
+  IconBrandGit,
+  IconBrandPrisma,
 } from "@tabler/icons-react";
 
 const About = () => {
   const skills = [
-    { name: "React", icon: <IconBrandReact size={32} stroke={1.5} /> },
-    { name: "Node.js", icon: <IconBrandNodejs size={32} stroke={1.5} /> },
-    { name: "Express", icon: <IconCode size={32} stroke={1.5} /> },
-    { name: "PostgreSQL", icon: <IconDatabase size={32} stroke={1.5} /> },
-    { name: "Prisma", icon: <IconDatabase size={32} stroke={1.5} /> },
+    // Core Web
+    { name: "HTML", icon: <IconFileTypeHtml size={32} stroke={1.5} /> },
+    { name: "CSS", icon: <IconFileTypeCss size={32} stroke={1.5} /> },
+    { name: "JavaScript", icon: <IconFileTypeJs size={32} stroke={1.5} /> },
+    { name: "TypeScript", icon: <IconFileTypeTs size={32} stroke={1.5} /> },
+
+    // Frontend frameworks y UI
+    { name: "React", icon: <IconFileTypeJsx size={32} stroke={1.5} /> },
+    { name: "React Native", icon: <IconFileTypeTsx size={32} stroke={1.5} /> },
     { name: "Astro", icon: <IconBrandAstro size={32} stroke={1.5} /> },
     { name: "Redux", icon: <IconBrandRedux size={32} stroke={1.5} /> },
+    { name: "TailwindCSS", icon: <IconBrandTailwind size={32} stroke={1.5} /> },
     { name: "i18n", icon: <IconLanguage size={32} stroke={1.5} /> },
     { name: "Chart.js", icon: <IconChartBar size={32} stroke={1.5} /> },
+
+    // Backend runtime y framework
+    { name: "Node.js", icon: <IconBrandNodejs size={32} stroke={1.5} /> },
+    { name: "Express", icon: <IconCode size={32} stroke={1.5} /> },
+
+    // Bases de datos y ORMs
+    { name: "PostgreSQL", icon: <IconDatabase size={32} stroke={1.5} /> },
+    { name: "Prisma", icon: <IconBrandPrisma size={32} stroke={1.5} /> },
+    { name: "Sequelize", icon: <IconDatabase size={32} stroke={1.5} /> },
+
+    // Control de versiones, DevOps y servicios
+    { name: "Git", icon: <IconBrandGit size={32} stroke={1.5} /> },
+    { name: "GitHub", icon: <IconBrandGithub size={32} stroke={1.5} /> },
+    { name: "CI/CD", icon: <IconGitBranch size={32} stroke={1.5} /> },
     { name: "Cloudinary", icon: <IconCloud size={32} stroke={1.5} /> },
     { name: "OpenAI API", icon: <IconBrandOpenai size={32} stroke={1.5} /> },
-    { name: "CI/CD", icon: <IconGitBranch size={32} stroke={1.5} /> },
   ];
 
   const values = [
@@ -99,8 +125,8 @@ const About = () => {
               </p>
               <p className="mt-3 text-black/75 text-start">
                 Mi enfoque combina <em>desarrollo práctico</em> (React, Node.js,
-                Express, PostgreSQL, Prisma, Astro, CI/CD) con{" "}
-                <em>gestión técnica</em> de proyectos, soporte IT interno y{" "}
+                Express, PostgreSQL, Prisma, CI/CD) con <em>gestión técnica</em>{" "}
+                de proyectos, soporte IT interno y{" "}
                 <em>cumplimiento normativo</em>. Me apasiona aprender, enseñar y
                 resolver problemas.
               </p>

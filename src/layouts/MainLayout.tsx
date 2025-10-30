@@ -1,6 +1,7 @@
 import Home from "../pages/Home/Home";
 import About from "../pages/About/About";
 import Experience from "../pages/Experience/Experience";
+import Education from "../pages/Education/Education";
 import "./mainLayout.css";
 
 const MainLayout = () => {
@@ -19,6 +20,11 @@ const MainLayout = () => {
       {/* Experience Section */}
       <section id="experience" className="relative">
         <Experience />
+      </section>
+
+      {/* Education Section */}
+      <section id="education" className="relative">
+        <Education />
       </section>
     </div>
   );
