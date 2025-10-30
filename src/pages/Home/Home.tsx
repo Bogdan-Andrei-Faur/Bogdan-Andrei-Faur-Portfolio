@@ -169,7 +169,7 @@ export default function App() {
 
       {/* Contenido superpuesto */}
       <m.div
-        className="absolute bottom-[2%] left-0 right-0 -translate-y-1/2 flex flex-col items-center justify-center p-8 z-10"
+        className="absolute bottom-[8%] sm:bottom-[6%] left-0 right-0 -translate-y-1/2 flex flex-col items-center justify-center p-8 z-10"
         style={{ opacity: contentOpacity }}
       >
         <m.h1

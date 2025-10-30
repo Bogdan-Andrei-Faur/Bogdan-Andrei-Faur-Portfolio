@@ -1,7 +1,9 @@
 import Home from "../pages/Home/Home";
 import About from "../pages/About/About";
 import Experience from "../pages/Experience/Experience";
+import Projects from "../pages/Projects/Projects";
 import Education from "../pages/Education/Education";
+import Contact from "../pages/Contact/Contact";
 import "./mainLayout.css";
 
 const MainLayout = () => {
@@ -22,9 +24,19 @@ const MainLayout = () => {
         <Experience />
       </section>
 
+      {/* Projects Section */}
+      <section id="projects" className="relative">
+        <Projects />
+      </section>
+
       {/* Education Section */}
       <section id="education" className="relative">
         <Education />
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="relative">
+        <Contact />
       </section>
     </div>
   );

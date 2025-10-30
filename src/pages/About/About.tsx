@@ -194,7 +194,7 @@ const About = () => {
                 transition={{
                   duration: 0.5,
                   ease: "easeOut",
-                  delay: index * 0.1,
+                  delay: index * 0.05,
                 }}
                 viewport={{ once: true }}
               >
