@@ -33,83 +33,11 @@ export default function Education() {
         </m.header>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6">
-          {/* Henry */}
-          <m.article
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5 }}
-            className="w-full bg-white/70 backdrop-blur-md border border-white/90 rounded-xl p-5 shadow-[0_4px_16px_rgba(0,0,0,0.08)] hover:-translate-y-1 hover:shadow-[0_10px_24px_rgba(0,0,0,0.12)] transition"
-          >
-            <div className="flex flex-col gap-1 mb-2">
-              <div className="inline-flex items-center gap-1 text-[0.85rem] text-black/70">
-                <IconBook2 size={18} />
-                <span>Mayo 2023 — Sep 2023</span>
-              </div>
-              <h3 className="text-xl font-semibold text-black/90">Henry</h3>
-              <p className="text-black/70">
-                Full‑Stack Developer (Bootcamp +800h)
-              </p>
-            </div>
-            <ul className="mt-2 mb-3 ml-5 grid gap-1 list-disc text-black/80">
-              <li>Entrenamiento intensivo en desarrollo full‑stack.</li>
-              <li>Prácticas con proyectos reales y trabajo colaborativo.</li>
-              <li>Control de versiones: Git.</li>
-              <li>Frontend: React, HTML, CSS, Redux.</li>
-              <li>Backend: Node.js, Express.</li>
-              <li>Bases de datos: PostgreSQL.</li>
-            </ul>
-            <div className="flex flex-wrap gap-2">
-              {[
-                "React",
-                "HTML",
-                "CSS",
-                "Redux",
-                "Node.js",
-                "Express",
-                "PostgreSQL",
-                "Sequelize",
-              ].map((t) => (
-                <Chip key={t} label={t} />
-              ))}
-            </div>
-          </m.article>
-
-          {/* IES Pirámide */}
-          <m.article
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5, delay: 0.05 }}
-            className="w-full bg-white/70 backdrop-blur-md border border-white/90 rounded-xl p-5 shadow-[0_4px_16px_rgba(0,0,0,0.08)] hover:-translate-y-1 hover:shadow-[0_10px_24px_rgba(0,0,0,0.12)] transition"
-          >
-            <div className="flex flex-col gap-1 mb-2">
-              <div className="inline-flex items-center gap-1 text-[0.85rem] text-black/70">
-                <IconBook2 size={18} />
-                <span>Sep 2017 — Jun 2019</span>
-              </div>
-              <h3 className="text-xl font-semibold text-black/90">
-                IES Pirámide
-              </h3>
-              <p className="text-black/70">
-                FP Básica en Informática, Telecomunicaciones y Electricidad
-              </p>
-            </div>
-            <ul className="mt-2 mb-3 ml-5 grid gap-1 list-disc text-black/80">
-              <li>Fundamentos de hardware, redes y sistemas operativos.</li>
-              <li>Mantenimiento de equipos.</li>
-              <li>Instalación y configuración de sistemas operativos.</li>
-              <li>Resolución de incidencias y soporte técnico.</li>
-            </ul>
-            <div className="flex flex-wrap gap-2">
-              {["Sistemas", "Redes", "Hardware", "Seguridad"].map((t) => (
-                <Chip key={t} label={t} />
-              ))}
-            </div>
-          </m.article>
+          {EDUCATION.map((item, idx) => (
+            <EducationCard key={item.title} item={item} index={idx} />
+          ))}
         </div>
 
-        {/* Certificaciones */}
         <m.div
           className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4"
           initial={{ opacity: 0, y: 20 }}
@@ -130,5 +58,88 @@ export default function Education() {
         </m.div>
       </div>
     </section>
+  );
+}
+
+type EducationItem = {
+  period: string;
+  title: string;
+  subtitle: string;
+  bullets: string[];
+  tags: string[];
+};
+
+const EDUCATION: EducationItem[] = [
+  {
+    period: "Mayo 2023 — Sep 2023",
+    title: "Henry",
+    subtitle: "Full‑Stack Developer (Bootcamp +800h)",
+    bullets: [
+      "Entrenamiento intensivo en desarrollo full‑stack.",
+      "Prácticas con proyectos reales y trabajo colaborativo.",
+      "Control de versiones: Git.",
+      "Frontend: React, HTML, CSS, Redux.",
+      "Backend: Node.js, Express.",
+      "Bases de datos: PostgreSQL.",
+    ],
+    tags: [
+      "React",
+      "HTML",
+      "CSS",
+      "Redux",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "Sequelize",
+    ],
+  },
+  {
+    period: "Sep 2017 — Jun 2019",
+    title: "IES Pirámide",
+    subtitle: "FP Básica en Informática, Telecomunicaciones y Electricidad",
+    bullets: [
+      "Fundamentos de hardware, redes y sistemas operativos.",
+      "Mantenimiento de equipos.",
+      "Instalación y configuración de sistemas operativos.",
+      "Resolución de incidencias y soporte técnico.",
+    ],
+    tags: ["Sistemas", "Redes", "Hardware", "Seguridad"],
+  },
+];
+
+function EducationCard({
+  item,
+  index,
+}: {
+  item: EducationItem;
+  index: number;
+}) {
+  return (
+    <m.article
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.5, delay: index * 0.05 }}
+      className="w-full bg-white/70 backdrop-blur-md border border-white/90 rounded-xl p-5 shadow-[0_4px_16px_rgba(0,0,0,0.08)] hover:-translate-y-1 hover:shadow-[0_10px_24px_rgba(0,0,0,0.12)] transition"
+    >
+      <div className="flex flex-col gap-1 mb-2">
+        <div className="inline-flex items-center gap-1 text-[0.85rem] text-black/70">
+          <IconBook2 size={18} />
+          <span>{item.period}</span>
+        </div>
+        <h3 className="text-xl font-semibold text-black/90">{item.title}</h3>
+        <p className="text-black/70">{item.subtitle}</p>
+      </div>
+      <ul className="mt-2 mb-3 ml-5 grid gap-1 list-disc text-black/80">
+        {item.bullets.map((b) => (
+          <li key={b}>{b}</li>
+        ))}
+      </ul>
+      <div className="flex flex-wrap gap-2">
+        {item.tags.map((t) => (
+          <Chip key={t} label={t} />
+        ))}
+      </div>
+    </m.article>
   );
 }

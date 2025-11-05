@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useState } from "react";
 import {
   IconHome,
   IconUser,
@@ -6,48 +7,37 @@ import {
   IconBrandGithub,
   IconAddressBook,
 } from "@tabler/icons-react";
-import { useCallback, useEffect, useMemo, useState } from "react";
+
+const BUTTONS = [
+  { id: "Home", label: <IconHome size={28} stroke={1.5} />, section: "home" },
+  { id: "About", label: <IconUser size={28} stroke={1.5} />, section: "about" },
+  {
+    id: "Experience",
+    label: <IconBriefcase2 size={28} stroke={1.5} />,
+    section: "experience",
+  },
+  {
+    id: "Projects",
+    label: <IconBrandGithub size={28} stroke={1.5} />,
+    section: "projects",
+  },
+  {
+    id: "Education",
+    label: <IconSchool size={28} stroke={1.5} />,
+    section: "education",
+  },
+  {
+    id: "Contact",
+    label: <IconAddressBook size={28} stroke={1.5} />,
+    section: "contact",
+  },
+];
 
 const Dock = () => {
-  const buttons = useMemo(
-    () => [
-      {
-        id: "Home",
-        label: <IconHome size={28} stroke={1.5} />,
-        section: "home",
-      },
-      {
-        id: "About",
-        label: <IconUser size={28} stroke={1.5} />,
-        section: "about",
-      },
-      {
-        id: "Experience",
-        label: <IconBriefcase2 size={28} stroke={1.5} />,
-        section: "experience",
-      },
-      {
-        id: "Projects",
-        label: <IconBrandGithub size={28} stroke={1.5} />,
-        section: "projects",
-      },
-      {
-        id: "Education",
-        label: <IconSchool size={28} stroke={1.5} />,
-        section: "education",
-      },
-      {
-        id: "Contact",
-        label: <IconAddressBook size={28} stroke={1.5} />,
-        section: "contact",
-      },
-    ],
-    []
-  );
+  const buttons = BUTTONS;
 
   const [activeSection, setActiveSection] = useState<string>("home");
 
-  // Scroll spy basado en la línea media del viewport para evitar parpadeos
   useEffect(() => {
     const ids = buttons.map((b) => b.section);
     const els: HTMLElement[] = ids
@@ -63,7 +53,6 @@ const Dock = () => {
 
       els.forEach((el, idx) => {
         const rect = el.getBoundingClientRect();
-        // Prioriza elementos visibles: si ninguno lo está, igualmente elegimos el más cercano
         const mid = rect.top + rect.height / 2;
         const dist = Math.abs(mid - centerY);
         if (dist < bestDist) {
@@ -72,7 +61,6 @@ const Dock = () => {
         }
       });
 
-      // Fallback: si estamos al final de la página, activa la última sección
       const nearBottom =
         window.innerHeight + window.scrollY >=
         (document.documentElement?.scrollHeight ?? 0) - 2;
@@ -94,7 +82,6 @@ const Dock = () => {
 
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });
-    // Primer cálculo
     computeActive();
 
     return () => {

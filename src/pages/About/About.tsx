@@ -1,5 +1,5 @@
-// Tailwind-first: CSS mínimo en esta página
 import { motion as m } from "framer-motion";
+import type { ReactNode } from "react";
 import profile from "../../assets/profile.webp";
 import {
   IconCode,
@@ -13,82 +13,112 @@ import {
   IconBrandGithub,
   IconBrandLinkedin,
   IconMail,
-  IconGitBranch,
-  IconCloud,
-  IconWorld,
-  IconDownload,
-  IconLanguage,
-  IconBrandRedux,
-  IconChartBar,
-  IconBrandOpenai,
-  IconFileTypeJs,
-  IconFileTypeTs,
   IconFileTypeHtml,
   IconFileTypeCss,
+  IconFileTypeJs,
+  IconFileTypeTs,
+  IconBrandRedux,
   IconBrandTailwind,
-  IconBrandGit,
+  IconLanguage,
+  IconChartBar,
   IconBrandPrisma,
+  IconBrandGit,
+  IconGitBranch,
+  IconCloud,
+  IconBrandOpenai,
+  IconWorld,
+  IconDownload,
 } from "@tabler/icons-react";
 
+type Skill = { name: string; icon: ReactNode };
+type Value = { title: string; description: string; icon: ReactNode };
+
+const SKILLS: Skill[] = [
+  { name: "HTML", icon: <IconFileTypeHtml size={32} stroke={1.5} /> },
+  { name: "CSS", icon: <IconFileTypeCss size={32} stroke={1.5} /> },
+  { name: "JavaScript", icon: <IconFileTypeJs size={32} stroke={1.5} /> },
+  { name: "TypeScript", icon: <IconFileTypeTs size={32} stroke={1.5} /> },
+  { name: "React", icon: <IconFileTypeJsx size={32} stroke={1.5} /> },
+  { name: "React Native", icon: <IconFileTypeTsx size={32} stroke={1.5} /> },
+  { name: "Astro", icon: <IconBrandAstro size={32} stroke={1.5} /> },
+  { name: "Redux", icon: <IconBrandRedux size={32} stroke={1.5} /> },
+  { name: "TailwindCSS", icon: <IconBrandTailwind size={32} stroke={1.5} /> },
+  { name: "i18n", icon: <IconLanguage size={32} stroke={1.5} /> },
+  { name: "Chart.js", icon: <IconChartBar size={32} stroke={1.5} /> },
+  { name: "Node.js", icon: <IconBrandNodejs size={32} stroke={1.5} /> },
+  { name: "Express", icon: <IconCode size={32} stroke={1.5} /> },
+  { name: "PostgreSQL", icon: <IconDatabase size={32} stroke={1.5} /> },
+  { name: "Prisma", icon: <IconBrandPrisma size={32} stroke={1.5} /> },
+  { name: "Sequelize", icon: <IconDatabase size={32} stroke={1.5} /> },
+  { name: "Git", icon: <IconBrandGit size={32} stroke={1.5} /> },
+  { name: "GitHub", icon: <IconBrandGithub size={32} stroke={1.5} /> },
+  { name: "CI/CD", icon: <IconGitBranch size={32} stroke={1.5} /> },
+  { name: "Cloudinary", icon: <IconCloud size={32} stroke={1.5} /> },
+  { name: "OpenAI API", icon: <IconBrandOpenai size={32} stroke={1.5} /> },
+];
+
+const VALUES: Value[] = [
+  {
+    title: "Desarrollo Full Stack",
+    description:
+      "Experiencia end-to-end desde el frontend hasta la base de datos, creando soluciones completas y escalables.",
+    icon: <IconCode size={40} stroke={1.5} />,
+  },
+  {
+    title: "Gestión de IT",
+    description:
+      "Liderazgo técnico y gestión de infraestructura, asegurando sistemas robustos y eficientes.",
+    icon: <IconUsers size={40} stroke={1.5} />,
+  },
+  {
+    title: "Innovación Continua",
+    description:
+      "Apasionado por adoptar nuevas tecnologías y metodologías para mejorar procesos y resultados.",
+    icon: <IconRocket size={40} stroke={1.5} />,
+  },
+];
+
+function SkillCard({ name, icon, index }: Skill & { index: number }) {
+  return (
+    <m.div
+      className="bg-white/70 backdrop-blur-md border border-white/90 rounded-xl p-6 flex flex-col items-center justify-center text-center text-black/85 shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] hover:bg-white/80 cursor-pointer"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.05 }}
+      viewport={{ once: true }}
+    >
+      <div className="text-black/70">{icon}</div>
+      <p className="text-base font-medium mt-2 text-black/80">{name}</p>
+    </m.div>
+  );
+}
+
+function ValueCard({
+  title,
+  description,
+  icon,
+  index,
+}: Value & { index: number }) {
+  return (
+    <m.div
+      className="bg-white/70 backdrop-blur-md border border-white/90 rounded-2xl p-8 text-black/85 shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)] hover:bg-white/75"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.15 }}
+      viewport={{ once: true }}
+      whileHover={{ y: -5 }}
+    >
+      <div className="text-black/70 mb-4">{icon}</div>
+      <h3 className="text-xl font-semibold mb-3 text-black">{title}</h3>
+      <p className="text-black/70 leading-relaxed">{description}</p>
+    </m.div>
+  );
+}
+
 const About = () => {
-  const skills = [
-    // Core Web
-    { name: "HTML", icon: <IconFileTypeHtml size={32} stroke={1.5} /> },
-    { name: "CSS", icon: <IconFileTypeCss size={32} stroke={1.5} /> },
-    { name: "JavaScript", icon: <IconFileTypeJs size={32} stroke={1.5} /> },
-    { name: "TypeScript", icon: <IconFileTypeTs size={32} stroke={1.5} /> },
-
-    // Frontend frameworks y UI
-    { name: "React", icon: <IconFileTypeJsx size={32} stroke={1.5} /> },
-    { name: "React Native", icon: <IconFileTypeTsx size={32} stroke={1.5} /> },
-    { name: "Astro", icon: <IconBrandAstro size={32} stroke={1.5} /> },
-    { name: "Redux", icon: <IconBrandRedux size={32} stroke={1.5} /> },
-    { name: "TailwindCSS", icon: <IconBrandTailwind size={32} stroke={1.5} /> },
-    { name: "i18n", icon: <IconLanguage size={32} stroke={1.5} /> },
-    { name: "Chart.js", icon: <IconChartBar size={32} stroke={1.5} /> },
-
-    // Backend runtime y framework
-    { name: "Node.js", icon: <IconBrandNodejs size={32} stroke={1.5} /> },
-    { name: "Express", icon: <IconCode size={32} stroke={1.5} /> },
-
-    // Bases de datos y ORMs
-    { name: "PostgreSQL", icon: <IconDatabase size={32} stroke={1.5} /> },
-    { name: "Prisma", icon: <IconBrandPrisma size={32} stroke={1.5} /> },
-    { name: "Sequelize", icon: <IconDatabase size={32} stroke={1.5} /> },
-
-    // Control de versiones, DevOps y servicios
-    { name: "Git", icon: <IconBrandGit size={32} stroke={1.5} /> },
-    { name: "GitHub", icon: <IconBrandGithub size={32} stroke={1.5} /> },
-    { name: "CI/CD", icon: <IconGitBranch size={32} stroke={1.5} /> },
-    { name: "Cloudinary", icon: <IconCloud size={32} stroke={1.5} /> },
-    { name: "OpenAI API", icon: <IconBrandOpenai size={32} stroke={1.5} /> },
-  ];
-
-  const values = [
-    {
-      title: "Desarrollo Full Stack",
-      description:
-        "Experiencia end-to-end desde el frontend hasta la base de datos, creando soluciones completas y escalables.",
-      icon: <IconCode size={40} stroke={1.5} />,
-    },
-    {
-      title: "Gestión de IT",
-      description:
-        "Liderazgo técnico y gestión de infraestructura, asegurando sistemas robustos y eficientes.",
-      icon: <IconUsers size={40} stroke={1.5} />,
-    },
-    {
-      title: "Innovación Continua",
-      description:
-        "Apasionado por adoptar nuevas tecnologías y metodologías para mejorar procesos y resultados.",
-      icon: <IconRocket size={40} stroke={1.5} />,
-    },
-  ];
-
   return (
     <div className="min-h-screen relative bg-transparent py-24 px-4">
       <div className="max-w-[1200px] mx-auto">
-        {/* Hero Section */}
         <m.section
           className="mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -156,7 +186,6 @@ const About = () => {
                   <IconBrandGithub size={18} />{" "}
                   <span className="text-sm">GitHub</span>
                 </a>
-                {/* Enlace a Web eliminado por redundante si ya estamos en la misma web */}
                 <a
                   href="https://drive.google.com/uc?export=download&id=19Si4TiAYfGwLMF_FD26eMiwcffaedvXK"
                   target="_blank"
@@ -171,9 +200,6 @@ const About = () => {
           </div>
         </m.section>
 
-        {/* Aptitudes principales eliminado a petición del usuario */}
-
-        {/* Tech Stack Section */}
         <m.section
           className="mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -185,35 +211,12 @@ const About = () => {
             Stack Tecnológico
           </h2>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-6 max-w-[800px] mx-auto">
-            {skills.map((skill, index) => (
-              <m.div
-                key={skill.name}
-                className="bg-white/70 backdrop-blur-md border border-white/90 rounded-xl p-6 flex flex-col items-center justify-center text-center text-black/85 shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] hover:bg-white/80 cursor-pointer"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  ease: "easeOut",
-                  delay: index * 0.05,
-                }}
-                viewport={{ once: true }}
-              >
-                <div className="text-black/70">{skill.icon}</div>
-                <p className="text-base font-medium mt-2 text-black/80">
-                  {skill.name}
-                </p>
-              </m.div>
+            {SKILLS.map((s, index) => (
+              <SkillCard key={s.name} index={index} {...s} />
             ))}
           </div>
         </m.section>
 
-        {/* Experiencia: se ha movido a sección propia */}
-
-        {/* Proyectos: tendrá su propia sección más adelante */}
-
-        {/* Intereses profesionales eliminado a petición del usuario */}
-
-        {/* Languages */}
         <m.section
           className="mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -234,7 +237,6 @@ const About = () => {
             </span>
           </div>
         </m.section>
-        {/* Values Section */}
         <m.section
           className="mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -244,28 +246,8 @@ const About = () => {
         >
           <h2 className="text-3xl font-bold mb-6 text-center">Mi Enfoque</h2>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-8">
-            {values.map((value, index) => (
-              <m.div
-                key={value.title}
-                className="bg-white/70 backdrop-blur-md border border-white/90 rounded-2xl p-8 text-black/85 shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)] hover:bg-white/75"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.6,
-                  ease: "easeOut",
-                  delay: index * 0.15,
-                }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5 }}
-              >
-                <div className="text-black/70 mb-4">{value.icon}</div>
-                <h3 className="text-xl font-semibold mb-3 text-black">
-                  {value.title}
-                </h3>
-                <p className="text-black/70 leading-relaxed">
-                  {value.description}
-                </p>
-              </m.div>
+            {VALUES.map((v, index) => (
+              <ValueCard key={v.title} index={index} {...v} />
             ))}
           </div>
         </m.section>

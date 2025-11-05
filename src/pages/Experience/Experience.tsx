@@ -5,6 +5,7 @@ import {
   useRef,
   useState,
   type CSSProperties,
+  type ReactNode,
 } from "react";
 import {
   IconBriefcase2,
@@ -38,7 +39,6 @@ type ExperienceItem = {
   tech: string[];
 };
 
-// Datos de experiencia (fuera del componente para no recrearlos en cada render)
 const EXPERIENCE_ITEMS: ExperienceItem[] = [
   {
     period: "Mar 2024 — Actualidad",
@@ -115,6 +115,31 @@ const EXPERIENCE_ITEMS: ExperienceItem[] = [
   },
 ];
 
+type InfoCardItem = {
+  icon: ReactNode;
+  title: string;
+  description: string;
+};
+
+const INFO_CARDS: InfoCardItem[] = [
+  {
+    icon: <IconSettings className="text-black/60" size={22} />,
+    title: "Gestión + Desarrollo",
+    description:
+      "Combino responsabilidad de IT con ejecución técnica end‑to‑end.",
+  },
+  {
+    icon: <IconCode className="text-black/60" size={22} />,
+    title: "Stack moderno",
+    description: "React, Astro, Node.js, Postgres, CI/CD, rendimiento y DX.",
+  },
+  {
+    icon: <IconUsers className="text-black/60" size={22} />,
+    title: "Trabajo en equipo",
+    description: "Comunicación clara, ownership y foco en entregar valor.",
+  },
+];
+
 function useResponsiveColumns() {
   const [cols, setCols] = useState(1);
   useEffect(() => {
@@ -185,8 +210,8 @@ function ExperienceCard({
         style={maskStyle}
       >
         <ul className="mt-2 mb-3 ml-5 grid gap-1 list-disc text-black/80">
-          {bullets.map((b, i) => (
-            <li key={i}>{b}</li>
+          {bullets.map((b) => (
+            <li key={b}>{b}</li>
           ))}
         </ul>
         <div className="flex flex-wrap gap-2">
@@ -218,7 +243,6 @@ function ExperienceCard({
 }
 
 export default function Experience() {
-  // calcular número de columnas según breakpoints Tailwind (sm:640px, lg:1024px)
   const numCols = useResponsiveColumns();
 
   const columns: ExperienceItem[][] = useMemo(() => {
@@ -271,35 +295,23 @@ export default function Experience() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-start gap-3 bg-white/70 border border-white/90 rounded-lg p-4 text-black">
-            <IconSettings className="text-black/60" size={22} />
-            <div>
-              <h4 className="font-medium text-black">Gestión + Desarrollo</h4>
-              <p className="text-black/70">
-                Combino responsabilidad de IT con ejecución técnica end‑to‑end.
-              </p>
-            </div>
-          </div>
-          <div className="flex items-start gap-3 bg-white/70 border border-white/90 rounded-lg p-4 text-black">
-            <IconCode className="text-black/60" size={22} />
-            <div>
-              <h4 className="font-medium text-black">Stack moderno</h4>
-              <p className="text-black/70">
-                React, Astro, Node.js, Postgres, CI/CD, rendimiento y DX.
-              </p>
-            </div>
-          </div>
-          <div className="flex items-start gap-3 bg-white/70 border border-white/90 rounded-lg p-4 text-black">
-            <IconUsers className="text-black/60" size={22} />
-            <div>
-              <h4 className="font-medium text-black">Trabajo en equipo</h4>
-              <p className="text-black/70">
-                Comunicación clara, ownership y foco en entregar valor.
-              </p>
-            </div>
-          </div>
+          {INFO_CARDS.map((c) => (
+            <InfoCard key={c.title} {...c} />
+          ))}
         </m.div>
       </div>
     </section>
+  );
+}
+
+function InfoCard({ icon, title, description }: InfoCardItem) {
+  return (
+    <div className="flex items-start gap-3 bg-white/70 border border-white/90 rounded-lg p-4 text-black">
+      {icon}
+      <div>
+        <h4 className="font-medium text-black">{title}</h4>
+        <p className="text-black/70">{description}</p>
+      </div>
+    </div>
   );
 }

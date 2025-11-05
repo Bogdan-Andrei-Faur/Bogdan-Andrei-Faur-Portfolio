@@ -1,4 +1,3 @@
-// Tailwind-first: CSS mínimo, sin módulo de estilos
 import { Canvas, useThree, useFrame } from "@react-three/fiber";
 import { useRef, useLayoutEffect, useCallback } from "react";
 import { motion as m, useTime, useScroll, useTransform } from "framer-motion";
@@ -17,6 +16,8 @@ type SphericalPositionable = {
     ) => void;
   };
 };
+
+type Rotatable = { rotation: { x: number; y: number } };
 
 const Icosahedron = () => (
   <mesh rotation-x={0.35}>
@@ -57,10 +58,7 @@ function Scene({
   sectionProgress: MotionValue<number>;
 }) {
   const gl = useThree((state) => state.gl);
-  type Rotatable = { rotation: { x: number; y: number } };
   const group = useRef<Rotatable | null>(null);
-  // Progreso normalizado de la sección Home (0 -> 1)
-  // Completa la animación 3D en ~40% del scroll de Home
   const yAngle = useTransform(
     sectionProgress,
     [0, 0.4],
@@ -70,7 +68,6 @@ function Scene({
   const time = useTime();
 
   useFrame(({ camera }) => {
-    // Usa el progreso de la sección Home exclusivamente
     const p = sectionProgress.get();
     if (p <= 0.4) {
       camera.position.setFromSphericalCoords(
@@ -79,7 +76,6 @@ function Scene({
         time.get() * 0.0005
       );
     } else {
-      // Mantén la posición final cuando se completa la animación
       camera.position.setFromSphericalCoords(
         3,
         degreesToRadians(180),
@@ -89,7 +85,6 @@ function Scene({
     camera.updateProjectionMatrix();
     camera.lookAt(0, 1.8, 0);
 
-    // Parallax suave según el mouse
     if (group.current) {
       const targetX = mouseRef.current.x * 0.25;
       const targetY = mouseRef.current.y * 0.15;
@@ -98,15 +93,13 @@ function Scene({
     }
   });
 
-  // Elimina el pixel ratio bajo para que el canvas se vea nítido
   useLayoutEffect(() => {
     gl.setPixelRatio(window.devicePixelRatio);
   });
 
-  const stars = [];
-  for (let i = 0; i < numStars; i++) {
-    stars.push(<Star key={i} p={pmProgress(0, numStars, i)} />);
-  }
+  const stars = Array.from({ length: numStars }, (_, i) => (
+    <Star key={i} p={pmProgress(0, numStars, i)} />
+  ));
 
   return (
     <group ref={group}>
@@ -116,18 +109,14 @@ function Scene({
   );
 }
 
-export default function App() {
+export default function Home() {
   const mouseRef = useRef({ x: 0, y: 0 });
   const sectionRef = useRef<HTMLDivElement | null>(null);
-  // Progreso normalizado solo para la sección Home
   const { scrollYProgress: sectionProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   });
-  // Desvanecimiento temprano del canvas dentro de Home
   const canvasOpacity = useTransform(sectionProgress, [0.2, 0.5], [1, 0]);
-  // Opacidad del contenido (nombre, títulos, flecha) siguiendo el scroll
-  // Mantiene 1 hasta ~15% y se desvanece hasta 0 en ~45%
   const contentOpacity = useTransform(
     sectionProgress,
     [0, 0.06, 0.18],
@@ -142,8 +131,6 @@ export default function App() {
     mouseRef.current.y = (0.5 - my) * 2; // -1..1 (invertido)
   }, []);
 
-  // Eliminado el listener global: ahora todo depende del progreso de la sección
-
   const scrollNext = useCallback(() => {
     const aboutSection = document.getElementById("about");
     if (aboutSection) {
@@ -157,7 +144,6 @@ export default function App() {
       className="relative bg-transparent min-h-[110vh] h-[110vh]"
       onMouseMove={handleMouseMove}
     >
-      {/* Canvas 3D */}
       <m.div
         className="fixed inset-0 z-0 transition-opacity duration-700 ease-out"
         style={{ opacity: canvasOpacity }}
@@ -167,7 +153,6 @@ export default function App() {
         </Canvas>
       </m.div>
 
-      {/* Contenido superpuesto */}
       <m.div
         className="absolute bottom-[8%] sm:bottom-[6%] left-0 right-0 -translate-y-1/2 flex flex-col items-center justify-center p-8 z-10"
         style={{ opacity: contentOpacity }}
@@ -197,7 +182,6 @@ export default function App() {
           Gestión y desarrollo de soluciones digitales
         </m.p>
 
-        {/* Flecha animada para scroll */}
         <m.button
           onClick={scrollNext}
           initial={{ opacity: 0, y: -10 }}
