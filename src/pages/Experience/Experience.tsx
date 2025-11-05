@@ -16,6 +16,7 @@ import {
   IconChevronDown,
   IconChevronUp,
 } from "@tabler/icons-react";
+import SectionHeader from "../../components/SectionHeader";
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -23,13 +24,7 @@ const fadeUp = {
   transition: { duration: 0.6 },
 };
 
-function Chip({ label }: { label: string }) {
-  return (
-    <span className="bg-white/90 border border-black/10 px-2 py-1 rounded-full text-xs text-black/75">
-      {label}
-    </span>
-  );
-}
+import Chip from "../../components/Chip";
 
 type ExperienceItem = {
   period: string;
@@ -256,24 +251,11 @@ export default function Experience() {
   return (
     <section className="relative bg-transparent py-24 px-4">
       <div className="max-w-[1200px] mx-auto">
-        <m.header
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-10 text-center"
-        >
-          <div className="inline-flex items-center gap-2 justify-center text-white">
-            <IconRocket size={28} color="#fff" />
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Experiencia laboral
-            </h2>
-          </div>
-          <p className="mt-2 text-white/80 max-w-2xl mx-auto">
-            Un resumen de mis últimos roles, responsabilidades y tecnologías con
-            las que he trabajado.
-          </p>
-        </m.header>
+        <SectionHeader
+          icon={<IconRocket size={28} color="#fff" />}
+          title="Experiencia laboral"
+          subtitle="Un resumen de mis últimos roles, responsabilidades y tecnologías con las que he trabajado."
+        />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {columns.map((col, idx) => (

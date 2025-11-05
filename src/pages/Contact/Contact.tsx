@@ -5,6 +5,7 @@ import {
   IconBrandLinkedin,
   IconMail,
 } from "@tabler/icons-react";
+import SectionHeader from "../../components/SectionHeader";
 import { useState } from "react";
 
 type ContactQuickLinkProps = {
@@ -55,23 +56,11 @@ export default function Contact() {
   return (
     <section className="relative bg-transparent py-24 px-4">
       <div className="max-w-[1200px] mx-auto flex flex-col gap-6 items-center justify-center">
-        <m.header
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-10 text-center"
-        >
-          <div className="inline-flex items-center gap-2 justify-center text-white">
-            <IconAddressBook size={28} color="#fff" />
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Contacto
-            </h2>
-          </div>
-          <p className="mt-2 text-white/80 max-w-2xl mx-auto">
-            ¿Hablamos? Estoy abierto a oportunidades y colaboraciones.
-          </p>
-        </m.header>
+        <SectionHeader
+          icon={<IconAddressBook size={28} color="#fff" />}
+          title="Contacto"
+          subtitle="¿Hablamos? Estoy abierto a oportunidades y colaboraciones."
+        />
 
         <m.div
           className="flex items-center justify-center gap-3 flex-row"
