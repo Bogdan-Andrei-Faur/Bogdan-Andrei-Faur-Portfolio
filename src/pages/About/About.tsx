@@ -136,7 +136,9 @@ const About = () => {
                 src={profile}
                 alt="Bogdan Andrei Faur"
                 className="w-[200px] h-[200px] rounded-full object-cover border-2 border-white/85 shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
-                loading="eager"
+                width={200}
+                height={200}
+                loading="lazy"
                 decoding="async"
               />
             </m.div>

@@ -287,7 +287,11 @@ export default function Experience() {
   );
 }
 
-const InfoCard = memo(function InfoCard({ icon, title, description }: InfoCardItem) {
+const InfoCard = memo(function InfoCard({
+  icon,
+  title,
+  description,
+}: InfoCardItem) {
   return (
     <div className="flex items-start gap-3 bg-white/70 border border-white/90 rounded-lg p-4 text-black">
       {icon}

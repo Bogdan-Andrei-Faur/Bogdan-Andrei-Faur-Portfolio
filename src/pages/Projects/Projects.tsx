@@ -64,7 +64,13 @@ const PROJECTS: Project[] = [
   },
 ];
 
-const ProjectCard = memo(function ProjectCard({ project, index }: { project: Project; index: number }) {
+const ProjectCard = memo(function ProjectCard({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
   const p = project;
   return (
     <m.article
