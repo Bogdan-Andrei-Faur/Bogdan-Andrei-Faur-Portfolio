@@ -1,5 +1,6 @@
 import { motion as m } from "framer-motion";
 import { IconSchool, IconCertificate, IconBook2 } from "@tabler/icons-react";
+import { memo } from "react";
 import Chip from "../../components/Chip";
 import SectionHeader from "../../components/SectionHeader";
 
@@ -90,7 +91,7 @@ const EDUCATION: EducationItem[] = [
   },
 ];
 
-function EducationCard({
+const EducationCard = memo(function EducationCard({
   item,
   index,
 }: {
@@ -125,4 +126,4 @@ function EducationCard({
       </div>
     </m.article>
   );
-}
+});

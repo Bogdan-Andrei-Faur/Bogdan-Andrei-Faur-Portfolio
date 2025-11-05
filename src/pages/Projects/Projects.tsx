@@ -1,4 +1,5 @@
 import { motion as m } from "framer-motion";
+import { memo } from "react";
 import { IconBrandGithub, IconRocket } from "@tabler/icons-react";
 import Chip from "../../components/Chip";
 import SectionHeader from "../../components/SectionHeader";
@@ -63,7 +64,7 @@ const PROJECTS: Project[] = [
   },
 ];
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+const ProjectCard = memo(function ProjectCard({ project, index }: { project: Project; index: number }) {
   const p = project;
   return (
     <m.article
@@ -99,7 +100,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       )}
     </m.article>
   );
-}
+});
 
 export default function Projects() {
   return (

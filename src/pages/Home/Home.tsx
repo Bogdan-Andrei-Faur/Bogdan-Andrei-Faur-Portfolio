@@ -1,5 +1,5 @@
 import { Canvas, useThree, useFrame } from "@react-three/fiber";
-import { useRef, useLayoutEffect, useCallback } from "react";
+import { useRef, useLayoutEffect, useCallback, useState, useEffect } from "react";
 import { motion as m, useTime, useScroll, useTransform } from "framer-motion";
 import type { MotionValue } from "framer-motion";
 import { degreesToRadians, progress as pmProgress, mix } from "popmotion";
@@ -52,10 +52,12 @@ function Scene({
   numStars = 140,
   mouseRef,
   sectionProgress,
+  isVisible,
 }: {
   numStars?: number;
   mouseRef: React.MutableRefObject<{ x: number; y: number }>;
   sectionProgress: MotionValue<number>;
+  isVisible: boolean;
 }) {
   const gl = useThree((state) => state.gl);
   const group = useRef<Rotatable | null>(null);
@@ -68,6 +70,8 @@ function Scene({
   const time = useTime();
 
   useFrame(({ camera }) => {
+    if (!isVisible) return;
+    
     const p = sectionProgress.get();
     if (p <= 0.4) {
       camera.position.setFromSphericalCoords(
@@ -94,8 +98,8 @@ function Scene({
   });
 
   useLayoutEffect(() => {
-    gl.setPixelRatio(window.devicePixelRatio);
-  });
+    gl.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  }, [gl]);
 
   const stars = Array.from({ length: numStars }, (_, i) => (
     <Star key={i} p={pmProgress(0, numStars, i)} />
@@ -112,6 +116,9 @@ function Scene({
 export default function Home() {
   const mouseRef = useRef({ x: 0, y: 0 });
   const sectionRef = useRef<HTMLDivElement | null>(null);
+  const [isVisible, setIsVisible] = useState(true);
+  const [numStars] = useState(() => (typeof window !== 'undefined' && window.innerWidth < 768 ? 70 : 140));
+  
   const { scrollYProgress: sectionProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
@@ -123,12 +130,32 @@ export default function Home() {
     [1, 1, 0]
   );
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    const currentSection = sectionRef.current;
+    if (currentSection) {
+      observer.observe(currentSection);
+    }
+
+    return () => {
+      if (currentSection) {
+        observer.unobserve(currentSection);
+      }
+    };
+  }, []);
+
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const mx = (e.clientX - rect.left) / rect.width; // 0..1
-    const my = (e.clientY - rect.top) / rect.height; // 0..1
-    mouseRef.current.x = (mx - 0.5) * 2; // -1..1
-    mouseRef.current.y = (0.5 - my) * 2; // -1..1 (invertido)
+    const mx = (e.clientX - rect.left) / rect.width;
+    const my = (e.clientY - rect.top) / rect.height;
+    mouseRef.current.x = (mx - 0.5) * 2;
+    mouseRef.current.y = (0.5 - my) * 2;
   }, []);
 
   const scrollNext = useCallback(() => {
@@ -149,7 +176,7 @@ export default function Home() {
         style={{ opacity: canvasOpacity }}
       >
         <Canvas gl={{ antialias: false }}>
-          <Scene mouseRef={mouseRef} sectionProgress={sectionProgress} />
+          <Scene mouseRef={mouseRef} sectionProgress={sectionProgress} isVisible={isVisible} numStars={numStars} />
         </Canvas>
       </m.div>
 

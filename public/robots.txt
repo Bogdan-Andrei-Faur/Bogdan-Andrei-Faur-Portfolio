@@ -1,0 +1,21 @@
+# Robots.txt para Bogdan Andrei Faur Portfolio
+# Permite el acceso completo a todos los bots de búsqueda
+
+User-agent: *
+Allow: /
+
+# Específico para bots de búsqueda principales
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Sitemap
+Sitemap: https://bogdan-andrei-faur-portfolio.onrender.com/sitemap.xml
+
+# Crawl-delay (opcional, para evitar sobrecarga del servidor)
+# Crawl-delay: 1

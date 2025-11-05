@@ -4,6 +4,7 @@ import {
   useMemo,
   useRef,
   useState,
+  memo,
   type CSSProperties,
   type ReactNode,
 } from "react";
@@ -150,7 +151,7 @@ function useResponsiveColumns() {
   return cols;
 }
 
-function ExperienceCard({
+const ExperienceCard = memo(function ExperienceCard({
   period,
   company,
   role,
@@ -235,7 +236,7 @@ function ExperienceCard({
       )}
     </m.article>
   );
-}
+});
 
 export default function Experience() {
   const numCols = useResponsiveColumns();
@@ -286,7 +287,7 @@ export default function Experience() {
   );
 }
 
-function InfoCard({ icon, title, description }: InfoCardItem) {
+const InfoCard = memo(function InfoCard({ icon, title, description }: InfoCardItem) {
   return (
     <div className="flex items-start gap-3 bg-white/70 border border-white/90 rounded-lg p-4 text-black">
       {icon}
@@ -296,4 +297,4 @@ function InfoCard({ icon, title, description }: InfoCardItem) {
       </div>
     </div>
   );
-}
+});

@@ -1,10 +1,18 @@
+import { lazy, Suspense } from "react";
 import Home from "../pages/Home/Home";
-import About from "../pages/About/About";
-import Experience from "../pages/Experience/Experience";
-import Projects from "../pages/Projects/Projects";
-import Education from "../pages/Education/Education";
-import Contact from "../pages/Contact/Contact";
 import "./mainLayout.css";
+
+const About = lazy(() => import("../pages/About/About"));
+const Experience = lazy(() => import("../pages/Experience/Experience"));
+const Projects = lazy(() => import("../pages/Projects/Projects"));
+const Education = lazy(() => import("../pages/Education/Education"));
+const Contact = lazy(() => import("../pages/Contact/Contact"));
+
+const SectionLoader = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="text-white/60 text-lg">Cargando...</div>
+  </div>
+);
 
 const MainLayout = () => {
   return (
@@ -13,25 +21,35 @@ const MainLayout = () => {
         <Home />
       </section>
 
-      <section id="about" className="relative">
-        <About />
-      </section>
+      <Suspense fallback={<SectionLoader />}>
+        <section id="about" className="relative">
+          <About />
+        </section>
+      </Suspense>
 
-      <section id="experience" className="relative">
-        <Experience />
-      </section>
+      <Suspense fallback={<SectionLoader />}>
+        <section id="experience" className="relative">
+          <Experience />
+        </section>
+      </Suspense>
 
-      <section id="projects" className="relative">
-        <Projects />
-      </section>
+      <Suspense fallback={<SectionLoader />}>
+        <section id="projects" className="relative">
+          <Projects />
+        </section>
+      </Suspense>
 
-      <section id="education" className="relative">
-        <Education />
-      </section>
+      <Suspense fallback={<SectionLoader />}>
+        <section id="education" className="relative">
+          <Education />
+        </section>
+      </Suspense>
 
-      <section id="contact" className="relative">
-        <Contact />
-      </section>
+      <Suspense fallback={<SectionLoader />}>
+        <section id="contact" className="relative">
+          <Contact />
+        </section>
+      </Suspense>
     </div>
   );
 };
