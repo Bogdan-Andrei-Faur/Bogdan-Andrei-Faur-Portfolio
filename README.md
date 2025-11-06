@@ -1,4 +1,24 @@
-# React + TypeScript + Vite
+# Bogdan Andrei Faur Portfolio
+
+Portfolio website built with React, TypeScript, Vite, and Tailwind CSS.
+
+## 🚀 Deployment
+
+This project is configured to automatically deploy to GitHub Pages when changes are pushed to the `main` branch.
+
+### Setup GitHub Pages
+
+1. Go to your repository **Settings** → **Pages**
+2. Under **Source**, select **GitHub Actions**
+3. Push to the `main` branch to trigger the deployment
+
+The site will be available at: `https://bogdan-andrei-faur.github.io/Bogdan-Andrei-Faur-Portfolio/`
+
+### Manual Deployment
+
+You can also trigger a deployment manually from the **Actions** tab by running the "Deploy to GitHub Pages" workflow.
+
+## 🛠️ Development
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -70,4 +90,32 @@ export default defineConfig([
     },
   },
 ])
+```
+
+## 📦 Installation
+
+```bash
+npm install
+```
+
+## 🏃 Running Locally
+
+```bash
+npm run dev
+```
+
+The development server will start at `http://localhost:5173`
+
+## 🔨 Building
+
+```bash
+npm run build
+```
+
+The production build will be output to the `dist` directory.
+
+## 🧹 Linting
+
+```bash
+npm run lint
 ```
