@@ -1,6 +1,6 @@
 import { motion as m } from "framer-motion";
 import type { ReactNode } from "react";
-import profile from "../../assets/profile.webp";
+
 import {
   IconCode,
   IconDatabase,
@@ -133,7 +133,7 @@ const About = () => {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             >
               <img
-                src={profile}
+                src="https://res.cloudinary.com/andreifaur/image/upload/Porfolio/profile.webp"
                 alt="Bogdan Andrei Faur"
                 className="w-[200px] h-[200px] rounded-full object-cover border-2 border-white/85 shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
                 width={200}

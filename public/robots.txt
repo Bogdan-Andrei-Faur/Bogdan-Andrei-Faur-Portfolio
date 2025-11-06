@@ -15,7 +15,7 @@ User-agent: Bingbot
 Allow: /
 
 # Sitemap
-Sitemap: https://bogdan-andrei-faur-portfolio.onrender.com/sitemap.xml
+Sitemap: https://andreifaur.dev/sitemap.xml
 
 # Crawl-delay (opcional, para evitar sobrecarga del servidor)
 # Crawl-delay: 1
