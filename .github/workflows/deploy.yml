@@ -38,6 +38,21 @@ jobs:
             - name: Add CNAME
               run: echo "andreifaur.dev" > ./dist/CNAME
 
+            - name: Update health check timestamp
+              run: |
+                  TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+                  sed -i "s/\"timestamp\": \".*\"/\"timestamp\": \"$TIMESTAMP\"/" ./dist/health.json
+
+            - name: Health check
+              run: |
+                  if [ -f "./dist/health.json" ]; then
+                    echo "✅ Health check file exists"
+                    cat ./dist/health.json
+                  else
+                    echo "❌ Health check file missing"
+                    exit 1
+                  fi
+
             - name: List dist
               run: ls -la ./dist
 
