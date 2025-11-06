@@ -9,6 +9,7 @@ Este proyecto se despliega automáticamente en GitHub Pages mediante GitHub Acti
 Añade los siguientes registros DNS para `andreifaur.dev`:
 
 **Registros A** (apuntando a los servidores de GitHub Pages):
+
 ```
 185.199.108.153
 185.199.109.153
@@ -17,6 +18,7 @@ Añade los siguientes registros DNS para `andreifaur.dev`:
 ```
 
 **Registro CNAME** (para www):
+
 ```
 www.andreifaur.dev → bogdan-andrei-faur.github.io
 ```
@@ -32,6 +34,7 @@ www.andreifaur.dev → bogdan-andrei-faur.github.io
 ### 3. Verificación
 
 Después de configurar el DNS (puede tardar hasta 48h), visita:
+
 - https://andreifaur.dev (dominio principal)
 - https://www.andreifaur.dev (redirección automática)
 
@@ -45,6 +48,7 @@ El workflow `.github/workflows/deploy.yml` se ejecuta automáticamente en cada p
 4. El archivo `public/CNAME` asegura que el dominio personalizado persista
 
 También puedes disparar un despliegue manual desde:
+
 - Actions → Deploy to GitHub Pages → Run workflow
 
 ## Archivos clave
