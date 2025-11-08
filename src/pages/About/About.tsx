@@ -189,7 +189,7 @@ const About = () => {
                   <span className="text-sm">GitHub</span>
                 </a>
                 <a
-                  href="https://drive.google.com/uc?export=download&id=19Si4TiAYfGwLMF_FD26eMiwcffaedvXK"
+                  href="https://drive.usercontent.google.com/u/0/uc?id=1usQNBkt8llt5CcurQLRHK4rl9-0C43jl&export=download"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-black text-white hover:bg-black/80 transition shadow-sm"
