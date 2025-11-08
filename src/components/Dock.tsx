@@ -40,53 +40,40 @@ const Dock = () => {
 
   useEffect(() => {
     const ids = buttons.map((b) => b.section);
-    const els: HTMLElement[] = ids
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => !!el);
 
-    const tickingRef = { current: false } as { current: boolean };
+    const updateActiveSection = () => {
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
 
-    const computeActive = () => {
-      const centerY = window.innerHeight / 2;
-      let bestId = ids[0];
-      let bestDist = Number.POSITIVE_INFINITY;
-
-      els.forEach((el, idx) => {
-        const rect = el.getBoundingClientRect();
-        const mid = rect.top + rect.height / 2;
-        const dist = Math.abs(mid - centerY);
-        if (dist < bestDist) {
-          bestDist = dist;
-          bestId = ids[idx];
+      for (let i = ids.length - 1; i >= 0; i--) {
+        const section = document.getElementById(ids[i]);
+        if (section) {
+          const sectionTop = section.offsetTop;
+          if (scrollPosition >= sectionTop) {
+            setActiveSection(ids[i]);
+            return;
+          }
         }
-      });
-
-      const nearBottom =
-        window.innerHeight + window.scrollY >=
-        (document.documentElement?.scrollHeight ?? 0) - 2;
-      if (nearBottom) {
-        bestId = ids[ids.length - 1];
       }
 
-      setActiveSection(bestId);
+      setActiveSection("home");
     };
 
-    const onScroll = () => {
-      if (tickingRef.current) return;
-      tickingRef.current = true;
-      requestAnimationFrame(() => {
-        computeActive();
-        tickingRef.current = false;
-      });
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateActiveSection();
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
-    computeActive();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    updateActiveSection();
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [buttons]);
 
