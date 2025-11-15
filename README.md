@@ -1,79 +1,95 @@
-# React + TypeScript + Vite
+# Portfolio — Bogdan Andrei Faur
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfolio personal construido con React + TypeScript y Vite. UI moderna con Tailwind CSS, animaciones sutiles y una escena 3D diferida para que cargue rápido. Desplegado automáticamente en GitHub Pages con dominio propio.
 
-Currently, two official plugins are available:
+- Demo: https://andreifaur.dev
+- Código: https://github.com/Bogdan-Andrei-Faur/Bogdan-Andrei-Faur-Portfolio
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Características
 
-## React Compiler
+- React 19 + Vite + TypeScript
+- Tailwind CSS 4 para estilos utilitarios
+- Animaciones con Framer Motion
+- Hero 3D con Three.js (@react-three/fiber), cargado bajo demanda (lazy)
+- Componentes reutilizables (Chip, SectionHeader) y memoización en tarjetas
+- Optimización de rendimiento: lazy loading, code splitting, IntersectionObserver, reducción de JS no usado
+- SEO listo: meta description, Open Graph, Twitter Cards, `robots.txt`, `sitemap.xml`, canonical
+- CI/CD con GitHub Actions → GitHub Pages
+- Health check: `GET /health.json`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Requisitos
 
-## Expanding the ESLint configuration
+- Node.js 20+
+- npm 10+ (o pnpm/yarn si lo prefieres)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Inicio rápido
 
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+git clone https://github.com/Bogdan-Andrei-Faur/Bogdan-Andrei-Faur-Portfolio.git
+cd Bogdan-Andrei-Faur-Portfolio
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Build de producción y previsualización local:
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
-
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+npm run build
+npm run preview
 ```
+
+## Estructura (resumen)
+
+```
+public/
+  CNAME              # dominio personalizado
+  robots.txt
+  sitemap.xml
+  health.json
+src/
+  components/
+    Dock.tsx
+  pages/
+    Home/
+      Home.tsx
+      ThreeScene.tsx
+    About/
+    Experience/
+    Projects/
+    Education/
+    Contact/
+```
+
+## Despliegue
+
+El repositorio incluye un workflow (`.github/workflows/deploy.yml`) que:
+
+- Instala dependencias y compila
+- Sube `dist/` como artifact
+- Despliega a GitHub Pages
+- Añade `CNAME` con `andreifaur.dev`
+
+Si reutilizas este repositorio:
+
+- Cambia o elimina `public/CNAME` y/o el paso "Add CNAME" del workflow
+- Actualiza URLs en `index.html` (canonical, og:url, twitter:url)
+- Actualiza `robots.txt` y `sitemap.xml` con tu dominio
+- Revisa `public/health.json` (nombre del servicio)
+
+## SEO y rendimiento
+
+- Metas completas en `index.html` (description, OG/Twitter, canonical)
+- `robots.txt` + `sitemap.xml` servidos desde `public/`
+- La escena 3D se carga de forma diferida tras idle/interacción
+- Intersecciones y memoización para evitar renders innecesarios
 
 ## Licencia
 
-- Código: publicado bajo la licencia MIT (consulta `LICENSE`).
-- Contenido (textos, imágenes, logotipo, CV, recursos gráficos): publicado bajo CC BY-NC-ND 4.0 (consulta `LICENSE-CONTENT`). No se permite uso comercial ni obras derivadas sin permiso.
-- Terceros: este proyecto utiliza software con licencias compatibles, por ejemplo: React, Vite, Tailwind CSS, Three.js y Tabler Icons (todas MIT). Revisa los repositorios oficiales para más detalles.
+- Código: MIT (consulta `LICENSE`).
+- Contenido (textos, imágenes, logotipo, CV, recursos gráficos): CC BY-NC-ND 4.0 (consulta `LICENSE-CONTENT`).
+- Terceros: React, Vite, Tailwind CSS, Three.js y Tabler Icons (todas MIT).
+
+## Contacto
+
+- Web: https://andreifaur.dev
+- Email: bogdan.andrei.faur@gmail.com
