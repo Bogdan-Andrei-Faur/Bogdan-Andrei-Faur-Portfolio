@@ -1,6 +1,10 @@
 import { motion as m } from "framer-motion";
 import { memo } from "react";
-import { IconBrandGithub, IconRocket, IconExternalLink } from "@tabler/icons-react";
+import {
+  IconBrandGithub,
+  IconRocket,
+  IconExternalLink,
+} from "@tabler/icons-react";
 import Chip from "../../components/Chip";
 import SectionHeader from "../../components/SectionHeader";
 
@@ -20,7 +24,8 @@ const PROJECTS: Project[] = [
   {
     title: "PixFlow - Editor de imágenes (PWA)",
     period: "2025",
-    summary: "Editor de imágenes ligero para cambiar formatos, recortar, redimensionar y aplicar ajustes. Funciona offline mediante service worker.",
+    summary:
+      "Editor de imágenes ligero para cambiar formatos, recortar, redimensionar y aplicar ajustes. Funciona offline mediante service worker.",
     bullets: [
       "PWA completamente funcional con soporte offline.",
       "Procesamiento de imágenes en el cliente sin backend.",
@@ -33,19 +38,29 @@ const PROJECTS: Project[] = [
   {
     title: "Portfolio personal",
     period: "2025",
-    summary: "SPA en React + TypeScript + TailwindCSS con animaciones, modelo 3D en Three.js y optimización SEO (100/100 Google Insights).",
+    summary:
+      "SPA en React + TypeScript + TailwindCSS con animaciones, modelo 3D en Three.js y optimización SEO (100/100 Google Insights).",
     bullets: [
       "Diseño moderno con animaciones fluidas usando Framer Motion.",
       "Escena 3D interactiva en la página de inicio con Three.js.",
       "SEO optimizado con puntuación perfecta en Google Insights.",
     ],
-    tech: ["React", "TypeScript", "Vite", "TailwindCSS", "Framer Motion", "Three.js", "SEO"],
+    tech: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "TailwindCSS",
+      "Framer Motion",
+      "Three.js",
+      "SEO",
+    ],
     link: "https://github.com/Bogdan-Andrei-Faur/Bogdan-Andrei-Faur-Portfolio",
   },
   {
     title: "MindScan - Plataforma SaaS psicológica",
     period: "2025",
-    summary: "Plataforma interna para diagnósticos psicológicos con panel de administración, informes, perfiles comparativos y control de roles.",
+    summary:
+      "Plataforma interna para diagnósticos psicológicos con panel de administración, informes, perfiles comparativos y control de roles.",
     bullets: [
       "Arquitectura full‑stack con autenticación JWT y roles de usuario.",
       "Panel de administración completo para gestión de tests y usuarios.",
@@ -67,7 +82,8 @@ const PROJECTS: Project[] = [
   {
     title: "Web corporativa Petroshore Compliance",
     period: "2024",
-    summary: "Desarrollo en Astro + TailwindCSS, optimizada para rendimiento, mantenimiento y publicación de contenido.",
+    summary:
+      "Desarrollo en Astro + TailwindCSS, optimizada para rendimiento, mantenimiento y publicación de contenido.",
     bullets: [
       "Migración desde WordPress a Astro para mejor rendimiento.",
       "Optimización SEO y tiempos de carga reducidos.",
@@ -79,14 +95,24 @@ const PROJECTS: Project[] = [
   {
     title: "Proyecto Full Stack - Caravana Social (Bootcamp)",
     period: "2023",
-    summary: "Proyecto real desarrollado para una ONG enfocada en inserción laboral. Coordiné parte del equipo (9 personas) y fui responsable principal del diseño visual y estilos.",
+    summary:
+      "Proyecto real desarrollado para una ONG enfocada en inserción laboral. Coordiné parte del equipo (9 personas) y fui responsable principal del diseño visual y estilos.",
     bullets: [
       "Aplicación web completa con React y Redux para el frontend.",
       "Backend con Node.js, Express y PostgreSQL (Sequelize).",
       "Trabajo colaborativo en equipo de 9 personas.",
       "Responsable del diseño visual y arquitectura de estilos.",
     ],
-    tech: ["React", "Redux", "CSS", "TailwindCSS", "Node.js", "Express", "PostgreSQL", "Sequelize"],
+    tech: [
+      "React",
+      "Redux",
+      "CSS",
+      "TailwindCSS",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "Sequelize",
+    ],
   },
 ];
 

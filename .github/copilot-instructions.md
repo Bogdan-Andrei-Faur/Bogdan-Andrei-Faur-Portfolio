@@ -46,7 +46,7 @@ src/
 1. **Strict Mode**: El proyecto usa TypeScript en modo estricto
 2. **Tipos explícitos**: Siempre define tipos para props de componentes
 3. **Type vs Interface**: Preferir `type` para props de componentes, `interface` solo cuando se necesite extensión
-4. **Naming**: 
+4. **Naming**:
    - Componentes: PascalCase (ej: `SectionHeader`)
    - Tipos: PascalCase con sufijo descriptivo si aplica (ej: `SectionHeaderProps`)
    - Variables/funciones: camelCase
@@ -78,21 +78,24 @@ src/
 1. **Import**: Usar `import { motion as m } from "framer-motion"`
 2. **Componentes animados**: Prefijo `m.` (ej: `m.div`, `m.article`)
 3. **Patrones comunes**:
+
    ```tsx
    // Fade up en scroll
    initial={{ opacity: 0, y: 20 }}
    whileInView={{ opacity: 1, y: 0 }}
    viewport={{ once: true, margin: "-60px" }}
    transition={{ duration: 0.5 }}
-   
+
    // Stagger en listas
    transition={{ duration: 0.5, delay: index * 0.05 }}
    ```
+
 4. **Performance**: Animar solo `opacity`, `scale`, `x`, `y` (propiedades que no causan reflow)
 
 ### Estructura de Datos
 
 1. **Secciones principales** (Experience, Projects, Education):
+
    - Definir tipo de item (ej: `ExperienceItem`, `Project`)
    - Array constante en UPPER_SNAKE_CASE (ej: `EXPERIENCE_ITEMS`, `PROJECTS`)
    - Componente de tarjeta memoizado con props del item + index
@@ -108,7 +111,7 @@ src/
 
 ### Rendimiento
 
-1. **Lazy Loading**: 
+1. **Lazy Loading**:
    - Páginas: `lazy(() => import("./pages/..."))`
    - Three.js: Carga diferida tras idle o 1s en Home
 2. **Code Splitting**: Automático con Vite + lazy imports
@@ -139,7 +142,11 @@ type MyComponentProps = {
   optional?: string;
 };
 
-export default function MyComponent({ title, icon, optional }: MyComponentProps) {
+export default function MyComponent({
+  title,
+  icon,
+  optional,
+}: MyComponentProps) {
   return (
     <m.div
       initial={{ opacity: 0 }}
@@ -169,9 +176,9 @@ const MyCard = memo(function MyCard(props: MyComponentProps) {
 
 ```tsx
 // En About.tsx - SKILLS array
-{ 
-  name: "NombreTecnología", 
-  icon: <IconNombre size={32} stroke={1.5} /> 
+{
+  name: "NombreTecnología",
+  icon: <IconNombre size={32} stroke={1.5} />
 }
 
 // Importar el icono desde @tabler/icons-react

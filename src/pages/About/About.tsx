@@ -62,7 +62,10 @@ const SKILLS: Skill[] = [
   { name: "Cloudinary", icon: <IconCloud size={32} stroke={1.5} /> },
   { name: "OpenAI API", icon: <IconBrandOpenai size={32} stroke={1.5} /> },
   { name: "Python", icon: <IconBrandPython size={32} stroke={1.5} /> },
-  { name: "Framer Motion", icon: <IconBrandFramerMotion size={32} stroke={1.5} /> },
+  {
+    name: "Framer Motion",
+    icon: <IconBrandFramerMotion size={32} stroke={1.5} />,
+  },
   { name: "Three.js", icon: <IconBrandThreejs size={32} stroke={1.5} /> },
   { name: "JWT", icon: <IconKey size={32} stroke={1.5} /> },
   { name: "Puppeteer", icon: <IconCode size={32} stroke={1.5} /> },
@@ -161,17 +164,20 @@ const About = () => {
                 Sobre mí
               </h1>
               <p className="text-lg md:text-xl text-black/80 text-start">
-                Soy <strong>Bogdan Andrei Faur</strong>, Full Stack Developer con experiencia 
-                construyendo aplicaciones web desde cero hasta producción. He sido responsable 
-                del área tecnológica en Petroshore Compliance, donde he liderado el desarrollo, 
-                mantenimiento y despliegue de productos como MindScan, una plataforma SaaS de 
-                diagnóstico psicológico. Manejo tanto frontend (React, TypeScript, Tailwind, Astro) 
-                como backend (Node.js, Express, Prisma, PostgreSQL), además de despliegues, CI/CD, 
-                integraciones con OpenAI y Cloudinary.
+                Soy <strong>Bogdan Andrei Faur</strong>, Full Stack Developer
+                con experiencia construyendo aplicaciones web desde cero hasta
+                producción. He sido responsable del área tecnológica en
+                Petroshore Compliance, donde he liderado el desarrollo,
+                mantenimiento y despliegue de productos como MindScan, una
+                plataforma SaaS de diagnóstico psicológico. Manejo tanto
+                frontend (React, TypeScript, Tailwind, Astro) como backend
+                (Node.js, Express, Prisma, PostgreSQL), además de despliegues,
+                CI/CD, integraciones con OpenAI y Cloudinary.
               </p>
               <p className="mt-3 text-black/75 text-start">
-                Me caracterizo por crear soluciones completas, escalables y bien documentadas; 
-                por aprender rápido; y por abordar proyectos con visión de producto.
+                Me caracterizo por crear soluciones completas, escalables y bien
+                documentadas; por aprender rápido; y por abordar proyectos con
+                visión de producto.
               </p>
               <div className="mt-4 flex items-center gap-3 flex-wrap">
                 <a
