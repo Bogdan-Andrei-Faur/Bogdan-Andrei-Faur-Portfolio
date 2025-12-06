@@ -28,6 +28,12 @@ import {
   IconBrandOpenai,
   IconWorld,
   IconDownload,
+  IconBrandPython,
+  IconBrandFramerMotion,
+  IconBrandThreejs,
+  IconKey,
+  IconServer,
+  IconBrandUbuntu,
 } from "@tabler/icons-react";
 
 type Skill = { name: string; icon: ReactNode };
@@ -55,6 +61,14 @@ const SKILLS: Skill[] = [
   { name: "CI/CD", icon: <IconGitBranch size={32} stroke={1.5} /> },
   { name: "Cloudinary", icon: <IconCloud size={32} stroke={1.5} /> },
   { name: "OpenAI API", icon: <IconBrandOpenai size={32} stroke={1.5} /> },
+  { name: "Python", icon: <IconBrandPython size={32} stroke={1.5} /> },
+  { name: "Framer Motion", icon: <IconBrandFramerMotion size={32} stroke={1.5} /> },
+  { name: "Three.js", icon: <IconBrandThreejs size={32} stroke={1.5} /> },
+  { name: "JWT", icon: <IconKey size={32} stroke={1.5} /> },
+  { name: "Puppeteer", icon: <IconCode size={32} stroke={1.5} /> },
+  { name: "NGINX", icon: <IconServer size={32} stroke={1.5} /> },
+  { name: "PM2", icon: <IconServer size={32} stroke={1.5} /> },
+  { name: "Ubuntu", icon: <IconBrandUbuntu size={32} stroke={1.5} /> },
 ];
 
 const VALUES: Value[] = [
@@ -147,20 +161,17 @@ const About = () => {
                 Sobre mí
               </h1>
               <p className="text-lg md:text-xl text-black/80 text-start">
-                Soy <strong>Bogdan Andrei Faur</strong>, Responsable de IT y
-                Full Stack Developer. Llevo más de{" "}
-                <strong>2 años programando</strong> y más de{" "}
-                <strong>1 año liderando</strong> proyectos y equipos técnicos.
-                Actualmente dirijo el área de IT en una consultora
-                internacional, donde he diseñado y desarrollado desde cero
-                nuestras principales soluciones digitales.
+                Soy <strong>Bogdan Andrei Faur</strong>, Full Stack Developer con experiencia 
+                construyendo aplicaciones web desde cero hasta producción. He sido responsable 
+                del área tecnológica en Petroshore Compliance, donde he liderado el desarrollo, 
+                mantenimiento y despliegue de productos como MindScan, una plataforma SaaS de 
+                diagnóstico psicológico. Manejo tanto frontend (React, TypeScript, Tailwind, Astro) 
+                como backend (Node.js, Express, Prisma, PostgreSQL), además de despliegues, CI/CD, 
+                integraciones con OpenAI y Cloudinary.
               </p>
               <p className="mt-3 text-black/75 text-start">
-                Mi enfoque combina <em>desarrollo práctico</em> (React, Node.js,
-                Express, PostgreSQL, Prisma, CI/CD) con <em>gestión técnica</em>{" "}
-                de proyectos, soporte IT interno y{" "}
-                <em>cumplimiento normativo</em>. Me apasiona aprender, enseñar y
-                resolver problemas.
+                Me caracterizo por crear soluciones completas, escalables y bien documentadas; 
+                por aprender rápido; y por abordar proyectos con visión de producto.
               </p>
               <div className="mt-4 flex items-center gap-3 flex-wrap">
                 <a

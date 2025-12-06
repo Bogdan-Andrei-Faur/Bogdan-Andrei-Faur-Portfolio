@@ -23,7 +23,7 @@ export default function Education() {
         </div>
 
         <m.div
-          className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4"
+          className="mt-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
@@ -32,10 +32,9 @@ export default function Education() {
           <div className="flex items-start gap-3 bg-white/70 border border-white/90 rounded-lg p-4 text-black">
             <IconCertificate className="text-black/60" size={22} />
             <div>
-              <h4 className="font-medium text-black">Certificaciones</h4>
-              <div className="mt-1 flex flex-wrap gap-2">
-                <Chip label="Desarrollo Full‑Stack" />
-                <Chip label="Inglés A2 / B1" />
+              <h4 className="font-medium text-black mb-2">Certificaciones</h4>
+              <div className="flex flex-wrap gap-2">
+                <Chip label="Desarrollo Full Stack – Henry (2023)" />
               </div>
             </div>
           </div>
@@ -55,39 +54,38 @@ type EducationItem = {
 
 const EDUCATION: EducationItem[] = [
   {
-    period: "Mayo 2023 — Sep 2023",
-    title: "Henry",
-    subtitle: "Full‑Stack Developer (Bootcamp +800h)",
+    period: "2017 — 2019",
+    title: "IES Pirámide",
+    subtitle: "FP Básica – Informática, Telecomunicaciones y Electricidad",
     bullets: [
-      "Entrenamiento intensivo en desarrollo full‑stack.",
-      "Prácticas con proyectos reales y trabajo colaborativo.",
-      "Control de versiones: Git.",
-      "Frontend: React, HTML, CSS, Redux.",
-      "Backend: Node.js, Express.",
-      "Bases de datos: PostgreSQL.",
+      "Fundamentos de hardware, redes y sistemas operativos.",
+      "Mantenimiento y reparación de equipos informáticos.",
+      "Instalación y configuración de sistemas operativos.",
+      "Resolución de incidencias y soporte técnico a usuarios.",
+    ],
+    tags: ["Sistemas", "Redes", "Hardware", "Soporte técnico"],
+  },
+  {
+    period: "2023",
+    title: "Henry",
+    subtitle: "Full Stack Developer (Bootcamp +800h)",
+    bullets: [
+      "Entrenamiento intensivo en desarrollo web full‑stack.",
+      "Metodologías ágiles y trabajo colaborativo en equipos.",
+      "Proyecto final real para ONG (Caravana Social).",
+      "Frontend: React, Redux, HTML, CSS, JavaScript.",
+      "Backend: Node.js, Express, PostgreSQL, Sequelize.",
+      "Control de versiones con Git y GitHub.",
     ],
     tags: [
       "React",
-      "HTML",
-      "CSS",
       "Redux",
       "Node.js",
       "Express",
       "PostgreSQL",
       "Sequelize",
+      "Git",
     ],
-  },
-  {
-    period: "Sep 2017 — Jun 2019",
-    title: "IES Pirámide",
-    subtitle: "FP Básica en Informática, Telecomunicaciones y Electricidad",
-    bullets: [
-      "Fundamentos de hardware, redes y sistemas operativos.",
-      "Mantenimiento de equipos.",
-      "Instalación y configuración de sistemas operativos.",
-      "Resolución de incidencias y soporte técnico.",
-    ],
-    tags: ["Sistemas", "Redes", "Hardware", "Seguridad"],
   },
 ];
 

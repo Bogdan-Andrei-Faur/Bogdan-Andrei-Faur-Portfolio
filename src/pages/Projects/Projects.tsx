@@ -1,6 +1,6 @@
 import { motion as m } from "framer-motion";
 import { memo } from "react";
-import { IconBrandGithub, IconRocket } from "@tabler/icons-react";
+import { IconBrandGithub, IconRocket, IconExternalLink } from "@tabler/icons-react";
 import Chip from "../../components/Chip";
 import SectionHeader from "../../components/SectionHeader";
 
@@ -13,54 +13,80 @@ type Project = {
   bullets: string[];
   tech: string[];
   link?: string;
+  webLink?: string;
 };
 
 const PROJECTS: Project[] = [
   {
-    title: "MindScan",
+    title: "PixFlow - Editor de imágenes (PWA)",
     period: "2025",
-    summary: "Plataforma web de análisis psicológico, reporting y exportación.",
+    summary: "Editor de imágenes ligero para cambiar formatos, recortar, redimensionar y aplicar ajustes. Funciona offline mediante service worker.",
     bullets: [
-      "Arquitectura full‑stack, autenticación y roles.",
-      "Métricas y paneles con Chart.js; reporting descargable.",
-      "Entrega en producción con CI/CD y control de calidad.",
+      "PWA completamente funcional con soporte offline.",
+      "Procesamiento de imágenes en el cliente sin backend.",
+      "Interfaz intuitiva y responsive.",
+    ],
+    tech: ["React", "TypeScript", "Vite", "PWA", "Service Worker"],
+    link: "https://github.com/Bogdan-Andrei-Faur/PixFlow",
+    webLink: "https://pixflow.andreifaur.dev",
+  },
+  {
+    title: "Portfolio personal",
+    period: "2025",
+    summary: "SPA en React + TypeScript + TailwindCSS con animaciones, modelo 3D en Three.js y optimización SEO (100/100 Google Insights).",
+    bullets: [
+      "Diseño moderno con animaciones fluidas usando Framer Motion.",
+      "Escena 3D interactiva en la página de inicio con Three.js.",
+      "SEO optimizado con puntuación perfecta en Google Insights.",
+    ],
+    tech: ["React", "TypeScript", "Vite", "TailwindCSS", "Framer Motion", "Three.js", "SEO"],
+    link: "https://github.com/Bogdan-Andrei-Faur/Bogdan-Andrei-Faur-Portfolio",
+  },
+  {
+    title: "MindScan - Plataforma SaaS psicológica",
+    period: "2025",
+    summary: "Plataforma interna para diagnósticos psicológicos con panel de administración, informes, perfiles comparativos y control de roles.",
+    bullets: [
+      "Arquitectura full‑stack con autenticación JWT y roles de usuario.",
+      "Panel de administración completo para gestión de tests y usuarios.",
+      "Generación de informes descargables y perfiles comparativos.",
+      "Métricas y gráficos interactivos con Chart.js.",
     ],
     tech: [
       "React",
-      "Tailwind CSS",
+      "TypeScript",
+      "TailwindCSS",
       "Chart.js",
-      "Framer Motion",
       "Node.js",
       "Express",
-      "Jest",
       "PostgreSQL",
       "Prisma",
-      "CI/CD",
+      "JWT",
     ],
   },
   {
-    title: "Web corporativa en Astro",
+    title: "Web corporativa Petroshore Compliance",
     period: "2024",
-    summary:
-      "Migración completa desde WordPress a Astro con mejoras de SEO y performance.",
+    summary: "Desarrollo en Astro + TailwindCSS, optimizada para rendimiento, mantenimiento y publicación de contenido.",
     bullets: [
-      "Reducción de tiempo de carga y mejor puntuación en Lighthouse.",
-      "Contenido estático optimizado y despliegue continuo.",
-      "Automatización básica de imágenes con Cloudinary.",
+      "Migración desde WordPress a Astro para mejor rendimiento.",
+      "Optimización SEO y tiempos de carga reducidos.",
+      "Sistema de internacionalización (i18n) multiidioma.",
+      "Despliegue continuo y automatización con CI/CD.",
     ],
-    tech: ["Astro", "React", "i18n", "CI/CD", "Cloudinary"],
+    tech: ["Astro", "React", "TailwindCSS", "i18n", "CI/CD", "Cloudinary"],
   },
   {
-    title: "PWA para evento corporativo",
-    period: "2024",
-    summary:
-      "Transmisión en vivo, comentarios, descarga de certificados y agenda interactiva.",
+    title: "Proyecto Full Stack - Caravana Social (Bootcamp)",
+    period: "2023",
+    summary: "Proyecto real desarrollado para una ONG enfocada en inserción laboral. Coordiné parte del equipo (9 personas) y fui responsable principal del diseño visual y estilos.",
     bullets: [
-      "Streaming embebido con comentarios moderados en tiempo real.",
-      "Agenda interactiva con recordatorios para charlas y paneles.",
-      "Generación y descarga de certificados personalizados para asistentes.",
+      "Aplicación web completa con React y Redux para el frontend.",
+      "Backend con Node.js, Express y PostgreSQL (Sequelize).",
+      "Trabajo colaborativo en equipo de 9 personas.",
+      "Responsable del diseño visual y arquitectura de estilos.",
     ],
-    tech: ["PWA", "Streaming", "Automatizaciones", "Certificados"],
+    tech: ["React", "Redux", "CSS", "TailwindCSS", "Node.js", "Express", "PostgreSQL", "Sequelize"],
   },
 ];
 
@@ -94,15 +120,29 @@ const ProjectCard = memo(function ProjectCard({
           <Chip key={t} label={t} />
         ))}
       </div>
-      {p.link && (
-        <a
-          href={p.link}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-2 mt-3 text-sm text-black/80 border border-black/10 rounded-full px-3 py-1 bg-white/85 hover:bg-white transition"
-        >
-          <IconBrandGithub size={16} /> Ver repositorio
-        </a>
+      {(p.link || p.webLink) && (
+        <div className="flex flex-wrap gap-2 mt-3">
+          {p.link && (
+            <a
+              href={p.link}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-black/80 border border-black/10 rounded-full px-3 py-1 bg-white/85 hover:bg-white transition"
+            >
+              <IconBrandGithub size={16} /> Ver repositorio
+            </a>
+          )}
+          {p.webLink && (
+            <a
+              href={p.webLink}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-black/80 border border-black/10 rounded-full px-3 py-1 bg-white/85 hover:bg-white transition"
+            >
+              <IconExternalLink size={16} /> Ver demo
+            </a>
+          )}
+        </div>
       )}
     </m.article>
   );
