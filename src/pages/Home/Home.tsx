@@ -129,7 +129,7 @@ export default function Home() {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
           className="mt-4 text-center text-sm md:text-base lg:text-lg text-black/80 max-w-3xl px-4"
         >
-          Responsable de IT & Full Stack Developer
+          Full Stack Developer
         </m.p>
         <m.p
           initial={{ opacity: 0, y: 10 }}
@@ -137,7 +137,7 @@ export default function Home() {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.25 }}
           className="mt-2 text-center text-sm md:text-base text-black/70 max-w-2xl px-4"
         >
-          Gestión y desarrollo de soluciones digitales
+          Desarrollo de soluciones digitales end-to-end
         </m.p>
 
         <m.button
